@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from datetime import datetime
+import csv
+import os
 
 app = Flask(__name__)
 
@@ -48,6 +50,18 @@ def format_hms(seconds):
     return f"{hours} jam {minutes} menit {secs} detik"
 
 
+CSV_FILE = "usage_data.csv"
+
+# Buat file CSV jika belum ada
+if not os.path.exists(CSV_FILE):
+    with open(CSV_FILE, mode="w", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+        writer.writerow([
+            "timestamp", "app_name", "package", "usage_time", 
+            "total_screen_time", "fuzzy_level"
+        ])
+
+
 @app.route('/receive_usage', methods=['POST'])
 def receive_usage():
     data = request.get_json(force=True, silent=False)
@@ -61,18 +75,24 @@ def receive_usage():
     print(f"\n[{now}] Received Total Screen Time: {total_sec_all} seconds")
     print(f"Received payload ({len(usage_list)} apps):")
 
-    # Format tiap aplikasi dengan waktu H M S
-    for item in usage_list:
-        pkg = item.get("package")
-        sec = item.get("foreground_time_s", 0)
-        app_name = PACKAGE_NAME_MAP.get(pkg, pkg)
-        formatted = format_hms(sec)
-        print(f" - {app_name} ({pkg}) -> {formatted}")
-
-    # Total waktu + level fuzzy
     formatted_total = format_hms(total_sec_all)
     total_hours = total_sec_all / 3600
     level = fuzzy_level(total_hours)
+
+    # Simpan ke CSV
+    with open(CSV_FILE, mode="a", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+
+        for item in usage_list:
+            pkg = item.get("package")
+            sec = item.get("foreground_time_s", 0)
+            app_name = PACKAGE_NAME_MAP.get(pkg, pkg)
+            formatted = format_hms(sec)
+            print(f" - {app_name} ({pkg}) -> {formatted}")
+
+            writer.writerow([
+                now, app_name, pkg, formatted, formatted_total, level
+            ])
 
     print(f"\nTotal penggunaan: {formatted_total} → Level: {level}")
 
