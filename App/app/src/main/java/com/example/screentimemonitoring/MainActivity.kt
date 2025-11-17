@@ -4,16 +4,15 @@ import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
+import android.net.Uri
 import android.provider.Settings
+import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-// Hapus import OkHttp yang tidak perlu di sini
-import androidx.work.* // <-- WorkManager diperlukan di sini
-import org.json.JSONArray
-import org.json.JSONObject
-import java.util.concurrent.TimeUnit // Diperlukan untuk interval WorkManager
+import androidx.work.*
+import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,20 +20,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnRequestPermission: Button
     private lateinit var btnGetUsage: Button
 
-    // VARIABEL HANDLER/RUNNABLE DIHAPUS
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         tvResult = findViewById(R.id.tvResult)
         btnRequestPermission = findViewById(R.id.btnRequestPermission)
         btnGetUsage = findViewById(R.id.btnUsage)
-
         btnRequestPermission.setOnClickListener {
             requestUsageAccess()
         }
-
+        if (!isIgnoringBatteryOptimizations()) {
+            requestDisableBatteryOptimization()
+        }
         btnGetUsage.setOnClickListener {
             if (hasUsageAccess()) {
                 // 1. Tampilkan data sekali (untuk user melihat hasil)
@@ -53,7 +50,15 @@ class MainActivity : AppCompatActivity() {
             schedulePeriodicMonitoring()
         }
     }
-
+    private fun isIgnoringBatteryOptimizations(): Boolean {
+        val pm = getSystemService(Context.POWER_SERVICE) as android.os.PowerManager
+        return pm.isIgnoringBatteryOptimizations(packageName)
+    }
+    private fun requestDisableBatteryOptimization() {
+        val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+        intent.data = Uri.parse("package:$packageName")
+        startActivity(intent)
+    }
     private fun hasUsageAccess(): Boolean {
         // ... (Fungsi ini tetap sama)
         val appOps = getSystemService(Context.APP_OPS_SERVICE) as android.app.AppOpsManager
@@ -64,12 +69,9 @@ class MainActivity : AppCompatActivity() {
         )
         return mode == android.app.AppOpsManager.MODE_ALLOWED
     }
-
     private fun requestUsageAccess() {
         startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
     }
-
-    // Fungsi ini kini hanya untuk menampilkan data di UI, bukan untuk tugas berkala.
     private fun showUsageStats() {
         // Isi fungsi ini sama seperti sebelumnya, tetapi HAPUS panggilan sendDataToServer(..)
 
@@ -123,11 +125,6 @@ class MainActivity : AppCompatActivity() {
         tvResult.text = sb.toString()
         // HAPUS: sendDataToServer(jsonArray, totalScreenTimeSeconds)
     }
-
-
-    // FUNGSI sendDataToServer() DIHAPUS DARI SINI
-
-    // FUNGSI BARU: Menjadwalkan WorkManager
     private fun schedulePeriodicMonitoring() {
         val workManager = WorkManager.getInstance(applicationContext)
         val tag = "UsageMonitorTag"
@@ -136,23 +133,24 @@ class MainActivity : AppCompatActivity() {
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
 
-        // GANTI KE PERIODIC WORK REQUEST
+        // Interval: 15 Menit (900.000 ms)
+        // Flex: 5 Menit (WorkManager akan mencoba berjalan antara menit ke-10 hingga menit ke-15)
         val periodicWorkRequest = PeriodicWorkRequestBuilder<UsageDataWorker>(
-            15, TimeUnit.MINUTES, // Interval 15 menit
-            5, TimeUnit.MINUTES // Fleksibel di 5 menit terakhir
+            15, TimeUnit.MINUTES,    // Jeda Total
+            5, TimeUnit.MINUTES     // Jendela Fleksibel (Minimal 5 Menit)
         )
             .setConstraints(constraints)
             .addTag(tag)
+            // Pastikan Anda sudah menggunakan sintaks .Builder(UsageDataWorker::class.java)
             .build()
 
-        // Antrekan pekerjaan WorkManager
         workManager.enqueueUniquePeriodicWork(
             tag,
-            ExistingPeriodicWorkPolicy.REPLACE, // Ganti pekerjaan lama jika ada
+            ExistingPeriodicWorkPolicy.REPLACE,
             periodicWorkRequest
         )
 
-        // Log di UI untuk konfirmasi
-        tvResult.append("\n\n✅ MONITORING BERKALA (15 Menit) DIJADWALKAN ULANG.")
+        // Log di UI
+        tvResult.append("\n\n✅ MONITORING BERKALA (Interval 15 Menit) DIJADWALKAN ULANG.")
     }
 }

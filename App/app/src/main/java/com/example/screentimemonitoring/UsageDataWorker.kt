@@ -1,12 +1,11 @@
 package com.example.screentimemonitoring
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
-import android.os.Build
 import android.util.Log
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import androidx.core.app.NotificationCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -18,7 +17,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
-// Gunakan CoroutineWorker karena mengandung OkHttpClient call (async/network)
+
 class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
     CoroutineWorker(appContext, workerParams) {
 
@@ -53,9 +52,9 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
             Result.retry()
         }
     }
-
     private fun hasUsageAccess(): Boolean {
-        val appOps = applicationContext.getSystemService(Context.APP_OPS_SERVICE) as android.app.AppOpsManager
+        val appOps =
+            applicationContext.getSystemService(Context.APP_OPS_SERVICE) as android.app.AppOpsManager
         val mode = appOps.checkOpNoThrow(
             android.app.AppOpsManager.OPSTR_GET_USAGE_STATS,
             android.os.Process.myUid(),
@@ -63,10 +62,9 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
         )
         return mode == android.app.AppOpsManager.MODE_ALLOWED
     }
-
-    // LOGIKA PENGAMBILAN DATA
     private fun getUsageStats(): Pair<JSONArray, Long> {
-        val usageStatsManager = applicationContext.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
+        val usageStatsManager =
+            applicationContext.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
         val endTime = System.currentTimeMillis()
         val startTime = endTime - 1000 * 60 * 60 * 24
 
@@ -78,11 +76,6 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
 
         val usageMap = mutableMapOf<String, Long>()
         var totalScreenTimeSeconds: Long = 0
-        if (usageStatsList.isNullOrEmpty()) {
-            Log.e(TAG, "Tidak ada data usage. Kemungkinan izin belum aktif.")
-            return Pair(JSONArray(), 0L)
-        }
-
         for (usage in usageStatsList) {
             val totalSec = usage.totalTimeInForeground / 1000
             if (totalSec > 0) {
@@ -110,32 +103,32 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
         }
         return Pair(jsonArray, totalScreenTimeSeconds)
     }
-
     private fun showNotification(message: String) {
         val channelId = "usage_monitor_channel"
-        val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
+        val notificationManager =
+            applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         // Buat channel untuk Android 8 ke atas
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            val channel = android.app.NotificationChannel(
+            val channel = NotificationChannel(
                 channelId,
                 "Usage Monitor Alerts",
-                android.app.NotificationManager.IMPORTANCE_HIGH
+                NotificationManager.IMPORTANCE_HIGH
             )
             notificationManager.createNotificationChannel(channel)
         }
 
-        val notification = androidx.core.app.NotificationCompat.Builder(applicationContext, channelId)
-            .setSmallIcon(android.R.drawable.ic_dialog_alert)
-            .setContentTitle("Peringatan Penggunaan Layar")
-            .setContentText(message)
-            .setPriority(androidx.core.app.NotificationCompat.PRIORITY_HIGH)
-            .build()
+        val notification =
+            NotificationCompat.Builder(applicationContext, channelId)
+                .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                .setContentTitle("Peringatan Penggunaan Layar")
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .build()
 
         notificationManager.notify(1, notification)
     }
-    // LOGIKA PENGIRIMAN DATA KE SERVER
-    @Throws(IOException::class) // Tambahkan agar kompiler tahu ini bisa melempar IO Exception
+    @Throws(IOException::class)
     private fun sendDataToServer(jsonArray: JSONArray, totalScreenTimeSeconds: Long) {
         val finalPayload = JSONObject()
         finalPayload.put("total_screen_time_s", totalScreenTimeSeconds)
@@ -146,22 +139,27 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
         val body = finalPayload.toString().toRequestBody(mediaType)
 
         val request = Request.Builder()
-            .url("http://192.168.1.101:5000/receive_usage")
+            .url("http://192.168.1.100:5000/receive_usage")
             .post(body)
             .build()
 
         client.newCall(request).execute().use { response ->
-            val body = response.body?.string()
-            Log.d(TAG, "Server Response Code: ${response.code}, Body: $body")
 
-            if (response.isSuccessful && body != null) {
-                val jsonResp = JSONObject(body)
-                val message = jsonResp.optString("message", "")
+            val responseBody = response.body?.string()
+            Log.d(TAG, "Response: code=${response.code}, body=$responseBody")
+
+            if (!response.isSuccessful) {
+                throw IOException("HTTP FAILED: ${response.code}")
+            }
+
+            // Jika sukses → baca JSON
+            if (responseBody != null) {
+                val json = JSONObject(responseBody)
+                val message = json.optString("message", "")
+
                 if (message.isNotEmpty()) {
-                    showNotification(message) // ✅ tampilkan notifikasi di background
+                    showNotification(message)
                 }
-            } else {
-                throw IOException("HTTP Request Failed: ${response.code}")
             }
         }
     }

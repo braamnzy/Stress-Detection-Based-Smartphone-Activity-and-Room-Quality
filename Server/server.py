@@ -63,8 +63,8 @@ def receive_usage():
             sec = item.get("foreground_time_s", 0)
             app_name = PACKAGE_NAME_MAP.get(pkg, pkg)
             formatted = format_hms(sec)
-            print(f" - {app_name} ({pkg}) [{category}] → {formatted}")
             category = APP_CATEGORY_MAP.get(pkg, "Lainnya")
+            print(f" - {app_name} ({pkg}) [{category}] → {formatted}")
             writer.writerow([now, app_name, pkg, category, formatted, formatted_total, level])
 
 
