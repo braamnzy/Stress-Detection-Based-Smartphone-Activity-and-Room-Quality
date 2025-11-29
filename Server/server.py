@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from datetime import datetime, timedelta # 📌 PERUBAHAN 1: Import timedelta
+from datetime import datetime, timedelta
 import csv
 import os
 import fuzzy_logic
@@ -8,17 +8,14 @@ import json
 
 app = Flask(__name__)
 
-# Global values from IoT
 LAST_TEMPERATURE = 25
 LAST_HUMIDITY = 30
 LAST_AIRQUALITY = 20
-# 📌 PERUBAHAN 2: Tambahkan variabel untuk menyimpan timestamp IoT terakhir
-LAST_IOT_TIMESTAMP = datetime.min # Diinisialisasi dengan waktu minimal
+LAST_IOT_TIMESTAMP = datetime.min 
 
-# Tentukan ambang batas proksimitas (misal: 5 menit)
 TIME_PROXIMITY_THRESHOLD = timedelta(minutes=5) 
 
-SMARTPHONE_DATA_RECEIVED = False # Tetap hanya untuk pesan info awal
+SMARTPHONE_DATA_RECEIVED = False 
 
 def format_hms(seconds):
     hours = int(seconds // 3600)
@@ -26,10 +23,8 @@ def format_hms(seconds):
     secs = int(seconds % 60)
     return f"{hours} jam {minutes} menit {secs} detik"
 
-# Variabel CSV harus konsisten
 CSV_OVERALL = "dataset_overall.csv" 
 
-# Create CSVs if not exist
 if not os.path.exists(CSV_OVERALL):
     with open(CSV_OVERALL, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
@@ -44,7 +39,6 @@ if not os.path.exists(CSV_OVERALL):
 # =======================
 @app.route('/receive_usage', methods=['POST'])
 def receive_usage():
-    # 📌 PERUBAHAN 3: Tambahkan LAST_IOT_TIMESTAMP ke global
     global LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY, SMARTPHONE_DATA_RECEIVED, LAST_IOT_TIMESTAMP 
 
     data = request.get_json(force=True)
@@ -58,12 +52,12 @@ def receive_usage():
     total_sec_all = data.get("total_screen_time_s", 0)
     usage_list = data.get("usage_data", [])
 
-    now_dt = datetime.now() # Ambil waktu sekarang sebagai objek datetime
+    now_dt = datetime.now()
     now = now_dt.isoformat()
     formatted_total = format_hms(total_sec_all)
     total_hours = total_sec_all / 3600
 
-    # Fuzzy logic using IoT sensor values (Selalu menggunakan nilai global terbaru)
+   
     result = fuzzy_logic.calculate_stress(
         total_hours,
         LAST_TEMPERATURE,
@@ -72,7 +66,7 @@ def receive_usage():
     )
 
     level = result["category"]
-    message = result["message"] # Pesan dari hasil fuzzy logic
+    message = result["message"]
 
     print(f"\n[{now}] === Android Usage Data ===")
     print(f"Total Screen Time: {formatted_total} → Level: {level}")
@@ -80,7 +74,6 @@ def receive_usage():
     print(f"Jumlah Aplikasi: {len(usage_list)}")
     print(f"FUZZY MESSAGE: {message}") 
 
-    # Proses usage_list menjadi JSON String yang tersimpan
     detailed_usage = []
     for item in usage_list:
         pkg = item.get("package")
@@ -98,11 +91,9 @@ def receive_usage():
     except Exception as e:
         usage_details_json_string = f"Error serializing usage: {e}" 
     
-    # Simpan ke CSV (Baris Ringkasan Android)
     with open(CSV_OVERALL, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         
-        # 1. Tulis baris Android
         writer.writerow([
             now, "android_summary", 
             LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY, 
@@ -110,15 +101,12 @@ def receive_usage():
             usage_details_json_string
         ])
         
-        # 📌 PERUBAHAN 4: Cek Proksimitas Waktu IoT
         time_difference = now_dt - LAST_IOT_TIMESTAMP
         
-        # Periksa apakah IoT masuk dalam jendela waktu
         if time_difference >= timedelta(seconds=0) and time_difference <= TIME_PROXIMITY_THRESHOLD:
             
             iot_message = f"IoT data (T:{LAST_TEMPERATURE}) saved due to {TIME_PROXIMITY_THRESHOLD} proximity."
             
-            # 2. Tulis baris IoT (jika lolos cek proksimitas)
             writer.writerow([
                 LAST_IOT_TIMESTAMP.isoformat(), "iot_proximal", 
                 LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY, 
@@ -133,7 +121,7 @@ def receive_usage():
         "status": "ok",
         "source": "android",
         "message": message,
-        # ... (response data lainnya)
+    
     }), 200
 
 
@@ -142,7 +130,6 @@ def receive_usage():
 # =======================
 @app.route('/receive_sensor', methods=['POST'])
 def receive_sensor():
-    # 📌 PERUBAHAN 5: Tambahkan LAST_IOT_TIMESTAMP ke global
     global LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY, LAST_IOT_TIMESTAMP
 
     data = request.get_json(force=True)
@@ -153,15 +140,14 @@ def receive_sensor():
     kelembapan = data.get("humidity")
     kualitas_udara = data.get("air_quality")
 
-    # Update global state
+   
     LAST_TEMPERATURE = suhu
     LAST_HUMIDITY = kelembapan
     LAST_AIRQUALITY = kualitas_udara
-    LAST_IOT_TIMESTAMP = datetime.now() # 📌 Simpan waktu update IoT
+    LAST_IOT_TIMESTAMP = datetime.now() 
 
     now = datetime.now().isoformat()
-    
-    # 📌 PERUBAHAN 6: Hapus semua logika penyimpanan CSV dari sini
+
     
     message = "Sensor data received and updated global state." 
     
