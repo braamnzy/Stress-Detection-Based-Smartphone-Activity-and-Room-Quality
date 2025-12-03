@@ -3,16 +3,15 @@ import time
 import random
 from datetime import datetime
 
-# GANTI DENGAN URL NGROK/SERVER FLASK ANDA (Misal: http://1a2b3c4d.ngrok.io/receive_sensor)
+# GANTI DENGAN IP KOMPUTER ANDA
 SERVER_URL = "http://192.168.1.100:5000/receive_sensor" 
-SIMULATION_INTERVAL = 900 # 📌 PERUBAHAN: Mengirim setiap 3 menit (180 detik)
+SIMULATION_INTERVAL = 900 
 
 def generate_sensor_data():
-    """Menghasilkan data sensor simulasi."""
     data = {
-        "temperature": round(random.uniform(25.0, 30.0), 2),
-        "humidity": random.randint(50, 70),
-        "air_quality": random.randint(30, 80)
+        "temperature": round(random.uniform(10.0, 30.0), 2),
+        "humidity": round(random.uniform(20, 80)),
+        "air_quality": round(random.uniform(0.1, 4.0), 2) 
     }
     return data
 

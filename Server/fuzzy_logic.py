@@ -8,11 +8,11 @@ from skfuzzy import control as ctrl
 # ====================================
 
 # Universe
-screen_universe = np.arange(0, 13, 1) # 0 hingga 12 jam
-temp_universe = np.arange(10, 41, 1)  # 10 hingga 40 °C
+screen_universe = np.arange(0, 12, 1) # 0 hingga 12 jam
+temp_universe = np.arange(0, 46, 1)  # 10 hingga 40 °C
 stress_universe = np.arange(0, 101, 1) # 0 hingga 100
 humid_universe = np.arange(0, 101, 1) # 0 hingga 100 %
-aq_universe = np.arange(0, 101, 1)    # 0 hingga 100
+aq_universe = np.arange(0, 5.1, 0.1)    # 0 hingga 100
 
 # Input fuzzy variables
 screen = ctrl.Antecedent(screen_universe, "screen") 
@@ -28,21 +28,21 @@ screen['rendah'] = fuzz.trimf(screen_universe, [0, 0, 4])
 screen['sedang'] = fuzz.trimf(screen_universe, [3, 5.5, 8])
 screen['tinggi'] = fuzz.trimf(screen_universe, [7, 10, 12])
 
-temp['dingin'] = fuzz.trimf(temp_universe, [10, 18, 22])
-temp['nyaman'] = fuzz.trimf(temp_universe, [20, 24, 28])
-temp['panas'] = fuzz.trimf(temp_universe, [26, 30, 40])
+temp['dingin'] = fuzz.trimf(temp_universe, [0, 8, 16])
+temp['nyaman'] = fuzz.trimf(temp_universe, [16, 23, 30])
+temp['panas'] = fuzz.trimf(temp_universe, [30, 38, 46])
 
 stress['rendah'] = fuzz.trimf(stress_universe, [0, 20, 40])
 stress['sedang'] = fuzz.trimf(stress_universe, [30, 50, 70])
 stress['tinggi'] = fuzz.trimf(stress_universe, [60, 80, 100])
 
-humid['kering'] = fuzz.trimf(humid_universe, [0, 0, 35])
-humid['ideal'] = fuzz.trimf(humid_universe, [25, 50, 75])
-humid['lembab'] = fuzz.trimf(humid_universe, [65, 100, 100])
+humid['kering'] = fuzz.trimf(humid_universe, [0, 0, 40])
+humid['ideal'] = fuzz.trimf(humid_universe, [30, 55, 70]) 
+humid['lembab'] = fuzz.trimf(humid_universe, [60, 100, 100])
 
-airq['buruk'] = fuzz.trimf(aq_universe, [0, 0, 40])
-airq['sedang'] = fuzz.trimf(aq_universe, [30, 50, 70])
-airq['baik'] = fuzz.trimf(aq_universe, [60, 100, 100])
+airq['baik'] = fuzz.trimf(aq_universe, [0, 0, 0.25])     
+airq['sedang'] = fuzz.trimf(aq_universe, [0.2, 0.4, 0.65]) 
+airq['buruk'] = fuzz.trimf(aq_universe, [0.6, 3.0, 5.0])
 
 # ====================================
 # RULE BASE
