@@ -5,6 +5,7 @@
         <domain includeSubdomains="true">192.168.1.100</domain>
         <domain includeSubdomains="true">192.168.1.101</domain>
         <domain includeSubdomains="true">192.168.1.102</domain>
+        <domain includeSubdomains="true">10.27.104.9</domain>
         <domain includeSubdomains="true">LOQ-AndykaZefanyaBramantyo</domain>
         <domain includeSubdomains="true">LOQ-AndykaZefanyaBramantyo.local</domain>
     </domain-config>

@@ -3,34 +3,26 @@ import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 
 
-# ====================================
-# DEFINITION WITH SKFUZZY
-# ====================================
-
-# Universe
 screen_universe = np.arange(0, 12, 1) # 0 hingga 12 jam
-temp_universe = np.arange(0, 46, 1)  # 10 hingga 40 °C
+temp_universe = np.arange(0, 46, 1)  # 10 hingga 45 °C
 stress_universe = np.arange(0, 101, 1) # 0 hingga 100
 humid_universe = np.arange(0, 101, 1) # 0 hingga 100 %
-aq_universe = np.arange(0, 5.1, 0.1)    # 0 hingga 100
+aq_universe = np.arange(0, 5.1, 0.1)    # 0 hingga 5.0 ppm
 
-# Input fuzzy variables
 screen = ctrl.Antecedent(screen_universe, "screen") 
 temp = ctrl.Antecedent(temp_universe, "temperature")
 humid = ctrl.Antecedent(humid_universe, "humidity")
 airq = ctrl.Antecedent(aq_universe, "air_quality")
 
-# Output fuzzy variable - PENTING: defuzzify_method untuk menangani error
 stress = ctrl.Consequent(stress_universe, "stress", defuzzify_method='centroid')
 
-# Membership functions
 screen['rendah'] = fuzz.trimf(screen_universe, [0, 0, 4])
 screen['sedang'] = fuzz.trimf(screen_universe, [3, 5.5, 8])
-screen['tinggi'] = fuzz.trimf(screen_universe, [7, 10, 12])
+screen['tinggi'] = fuzz.trimf(screen_universe, [7, 12, 12.1]) 
 
 temp['dingin'] = fuzz.trimf(temp_universe, [0, 8, 16])
 temp['nyaman'] = fuzz.trimf(temp_universe, [16, 23, 30])
-temp['panas'] = fuzz.trimf(temp_universe, [30, 38, 46])
+temp['panas'] = fuzz.trimf(temp_universe, [30, 46, 46.1])
 
 stress['rendah'] = fuzz.trimf(stress_universe, [0, 20, 40])
 stress['sedang'] = fuzz.trimf(stress_universe, [30, 50, 70])
@@ -38,11 +30,11 @@ stress['tinggi'] = fuzz.trimf(stress_universe, [60, 80, 100])
 
 humid['kering'] = fuzz.trimf(humid_universe, [0, 0, 40])
 humid['ideal'] = fuzz.trimf(humid_universe, [30, 55, 70]) 
-humid['lembab'] = fuzz.trimf(humid_universe, [60, 100, 100])
+humid['lembab'] = fuzz.trimf(humid_universe, [60, 100, 100.1])
 
 airq['baik'] = fuzz.trimf(aq_universe, [0, 0, 0.25])     
 airq['sedang'] = fuzz.trimf(aq_universe, [0.2, 0.4, 0.65]) 
-airq['buruk'] = fuzz.trimf(aq_universe, [0.6, 3.0, 5.0])
+airq['buruk'] = fuzz.trimf(aq_universe, [0.6, 5.0, 5.1])
 
 # ====================================
 # RULE BASE
@@ -271,35 +263,45 @@ if __name__ == '__main__':
     print("TESTING FUZZY LOGIC SYSTEM")
     print("="*60)
     
-    # Test Case 1: Stress Tinggi
-    print("\n[TEST 1] Layar Tinggi + Suhu Panas")
-    result1 = calculate_stress(7, 30, 50, 90)
+    # 1 — Kondisi paling stres (screen tinggi, panas, lembab, AQ bahaya)
+    print("\n[TEST 1] Screen Tinggi + Panas + Lembab + AQ Bahaya (>0.6)")
+    result1 = calculate_stress(10, 35, 85, 1.0)   # AQ = 1 ppm (bahaya)
     print(f"Result: {result1}\n")
     
-    # Test Case 2: Stress karena Air Quality Buruk
-    print("[TEST 2] Layar Rendah + AQ Buruk")
-    result2 = calculate_stress(2, 25, 50, 30)
+    # 2 — Screen rendah tapi AQ bahaya
+    print("[TEST 2] Screen Rendah + AQ Bahaya")
+    result2 = calculate_stress(2, 25, 50, 0.8)
     print(f"Result: {result2}\n")
     
-    # Test Case 3: Stress karena Kelembaban Ekstrim
-    print("[TEST 3] Layar Rendah + Humid Lembab")
-    result3 = calculate_stress(2, 25, 90, 90)
+    # 3 — Screen rendah + humid lembab
+    print("[TEST 3] Humid Sangat Lembab")
+    result3 = calculate_stress(2, 25, 95, 0.1)    # AQ bagus
     print(f"Result: {result3}\n")
     
-    # Test Case 4: Kondisi Optimal
-    print("[TEST 4] Kondisi Optimal")
-    result4 = calculate_stress(3, 24, 50, 80)
+    # 4 — Kondisi optimal
+    print("[TEST 4] Optimal (screen sedang, suhu nyaman, humid ideal, AQ rendah)")
+    result4 = calculate_stress(3, 24, 50, 0.1)
     print(f"Result: {result4}\n")
     
-    # Test Case 5: Edge Case - Input Minimum
-    print("[TEST 5] Edge Case - Input Minimum")
-    result5 = calculate_stress(0, 10, 0, 0)
+    # 5 — Input minimum
+    print("[TEST 5] Minimum Input")
+    result5 = calculate_stress(0, 10, 0, 0.0)
     print(f"Result: {result5}\n")
     
-    # Test Case 6: Edge Case - Input Maximum
-    print("[TEST 6] Edge Case - Input Maximum")
-    result6 = calculate_stress(12, 40, 100, 100)
+    # 6 — Input maximum
+    print("[TEST 6] Maximum Input")
+    result6 = calculate_stress(12, 40, 100, 5.0)  # 5 ppm = sangat bahaya
     print(f"Result: {result6}\n")
+    
+    # 7 — Suhu dingin + AQ sedang
+    print("[TEST 7] Suhu Dingin + AQ Sedang")
+    result7 = calculate_stress(1, 15, 40, 0.4)
+    print(f"Result: {result7}\n")
+    
+    # 8 — Suhu panas + AQ sedang
+    print("[TEST 8] Suhu Panas + AQ Sedang")
+    result8 = calculate_stress(5, 38, 50, 0.5)
+    print(f"Result: {result8}\n")
     
     print("="*60)
     print("TESTING SELESAI")

@@ -4,7 +4,7 @@ import random
 from datetime import datetime
 
 # GANTI DENGAN IP KOMPUTER ANDA
-SERVER_URL = "http://192.168.1.100:5000/receive_sensor" 
+SERVER_URL = "http://10.27.104.9:5000/receive_sensor" 
 SIMULATION_INTERVAL = 900 
 
 def generate_sensor_data():

@@ -35,13 +35,10 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
         }
 
         return try {
-            // 1. Ambil data penggunaan dari sistem
             val (jsonArray, totalScreenTimeSeconds) = getUsageStats()
 
-            // 2. Kirim data ke server
             sendDataToServer(jsonArray, totalScreenTimeSeconds)
-
-            // 3. Berhasil
+         
             Log.d(TAG, "Worker SUCCEEDED: Data sent to server.")
             Result.success()
         } catch (e: Exception) {
@@ -63,8 +60,7 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
         return mode == android.app.AppOpsManager.MODE_ALLOWED
     }
     private fun getUsageStats(): Pair<JSONArray, Long> {
-        val usageStatsManager =
-            applicationContext.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
+        val usageStatsManager = applicationContext.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
         val endTime = System.currentTimeMillis()
         val startTime = endTime - 1000 * 60 * 60 * 24
 
@@ -103,6 +99,7 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
         }
         return Pair(jsonArray, totalScreenTimeSeconds)
     }
+
     private fun showNotification(message: String) {
         val channelId = "usage_monitor_channel"
         val notificationManager =

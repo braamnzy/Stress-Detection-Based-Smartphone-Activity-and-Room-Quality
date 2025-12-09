@@ -23,7 +23,10 @@ def format_hms(seconds):
     return f"{hours} jam {minutes} menit {secs} detik"
 
 
-CSV_OVERALL = "dataset_overall.csv"
+DATA_FOLDER = "data"
+CSV_OVERALL = os.path.join(DATA_FOLDER, "dataset_overall.csv")
+
+os.makedirs(DATA_FOLDER, exist_ok=True)
 
 if not os.path.exists(CSV_OVERALL):
     with open(CSV_OVERALL, "w", newline="", encoding="utf-8") as f:
@@ -31,8 +34,8 @@ if not os.path.exists(CSV_OVERALL):
         writer.writerow([
             "timestamp", "source",
             "temperature", "humidity", "air_quality",
-            "app_count", "total_usage_time", "fuzzy_level", "message",
-            "usage_details"
+            "app_count", "total_usage_time", 
+            "fuzzy_level", "message"
         ])
 
 
@@ -73,14 +76,7 @@ def receive_usage():
     print(f"\n[{now}] === Android Usage Data ===")
     print(f"Total Screen Time: {formatted_total} → Level: {level}")
     print(f"Suhu dipakai: {LAST_TEMPERATURE}°C, Humid: {LAST_HUMIDITY}%, AQ: {LAST_AIRQUALITY}%")
-    print(f"Jumlah Aplikasi: {len(usage_list)}")
     print(f"FUZZY MESSAGE: {message}")
-
-    # Simpan usage_details apa adanya (tanpa package_map)
-    try:
-        usage_details_json_string = json.dumps(usage_list)
-    except Exception as e:
-        usage_details_json_string = f"Error serializing usage: {e}"
 
     # Tulis ke CSV
     with open(CSV_OVERALL, "a", newline="", encoding="utf-8") as f:
@@ -89,8 +85,7 @@ def receive_usage():
         writer.writerow([
             now, "android_summary",
             LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY,
-            len(usage_list), formatted_total, level, message,
-            usage_details_json_string
+            formatted_total, level, message
         ])
 
         # PROXIMITY CHECK IOT

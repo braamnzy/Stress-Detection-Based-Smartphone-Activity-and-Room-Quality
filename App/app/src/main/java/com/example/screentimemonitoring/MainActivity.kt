@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnGetUsage: Button
     private lateinit var btnChangeIp: Button
     private val NOTIFICATION_PERMISSION_CODE = 101
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -132,8 +133,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
     }
     private fun showUsageStats() {
-        // Isi fungsi ini sama seperti sebelumnya, tetapi HAPUS panggilan sendDataToServer(..)
-
         val usageStatsManager = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
         val endTime = System.currentTimeMillis()
         val startTime = endTime - 1000 * 60 * 60 * 24 // 24 jam terakhir
@@ -149,7 +148,6 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Gabungkan duplicate package (Logika tetap sama)
         val usageMap = mutableMapOf<String, Long>()
         var totalScreenTimeSeconds: Long = 0
         for (usage in usageStatsList) {
@@ -160,7 +158,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Siapkan StringBuilder (Logika tetap sama)
         val sb = StringBuilder()
         sb.append("=== Top 10 Penggunaan 24 Jam Terakhir ===\n\n")
 
@@ -183,6 +180,7 @@ class MainActivity : AppCompatActivity() {
 
         tvResult.text = sb.toString()
     }
+    
     private fun schedulePeriodicMonitoring() {
         val workManager = WorkManager.getInstance(applicationContext)
         val tag = "UsageMonitorTag"
