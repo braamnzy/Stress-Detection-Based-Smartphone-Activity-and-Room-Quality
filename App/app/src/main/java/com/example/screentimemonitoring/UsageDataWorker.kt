@@ -59,6 +59,7 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
         )
         return mode == android.app.AppOpsManager.MODE_ALLOWED
     }
+
     private fun getRealScreenTime(
         usageStatsManager: UsageStatsManager,
         startTime: Long,
@@ -178,7 +179,6 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
         return jsonArray
     }
 
-
     private fun showNotification(message: String) {
         val channelId = "usage_monitor_channel"
         val notificationManager =
@@ -234,8 +234,6 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
 
                 val level = json.optString("level", "rendah")
                 val message = json.optString("message", "")
-
-                // Simpan status terakhir (untuk ditampilkan di MainActivity)
                 val prefs = applicationContext.getSharedPreferences(
                     "stress_prefs",
                     Context.MODE_PRIVATE

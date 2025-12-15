@@ -1,7 +1,5 @@
 package com.example.screentimemonitoring
 
-import android.app.usage.UsageStats
-import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -14,7 +12,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.work.*
 import java.util.concurrent.TimeUnit
-import java.util.Calendar
 import android.Manifest
 import android.content.pm.PackageManager
 import android.app.AlertDialog
@@ -64,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             showIpInputDialog()
         }
     }
+
     private fun showIpInputDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Ubah Alamat Server Flask")
@@ -78,25 +76,28 @@ class MainActivity : AppCompatActivity() {
             val newUrl = input.text.toString().trim()
             if (newUrl.startsWith("http://", ignoreCase = true)) {
                 ServerConfig.BASE_URL = newUrl
-                tvResult.text = "✅ IP Server Diperbarui ke:\n$newUrl"
+                tvResult.text = "IP Server Diperbarui ke:\n$newUrl"
                 schedulePeriodicMonitoring()
             } else {
-                tvResult.text = "❌ Format URL tidak valid (harus diawali http://)"
+                tvResult.text = "Format URL tidak valid (harus diawali http://)"
             }
         }
         builder.setNegativeButton("Batal") { dialog, which -> dialog.cancel() }
 
         builder.show()
     }
+
     private fun isIgnoringBatteryOptimizations(): Boolean {
         val pm = getSystemService(Context.POWER_SERVICE) as android.os.PowerManager
         return pm.isIgnoringBatteryOptimizations(packageName)
     }
+
     private fun requestDisableBatteryOptimization() {
         val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
         intent.data = Uri.parse("package:$packageName")
         startActivity(intent)
     }
+
     private fun showLastStressStatus() {
         val prefs = getSharedPreferences("stress_prefs", Context.MODE_PRIVATE)
         val message = prefs.getString(
@@ -104,19 +105,16 @@ class MainActivity : AppCompatActivity() {
             "Belum ada analisis stres."
         )
 
-        tvResult.append("\n\n🧠 Status Stres Terakhir:\n$message")
+        tvResult.append("\n\n Status Stres Terakhir:\n$message")
     }
-    private fun requestNotificationPermission() {
-        // Cek jika versi Android adalah TIRAMISU (API 33) atau lebih tinggi
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
 
-            // Periksa apakah izin sudah diberikan
+    private fun requestNotificationPermission() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.POST_NOTIFICATIONS
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                // Minta izin notifikasi secara eksplisit
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(Manifest.permission.POST_NOTIFICATIONS),
@@ -125,8 +123,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun hasUsageAccess(): Boolean {
-        // ... (Fungsi ini tetap sama)
         val appOps = getSystemService(Context.APP_OPS_SERVICE) as android.app.AppOpsManager
         val mode = appOps.checkOpNoThrow(
             android.app.AppOpsManager.OPSTR_GET_USAGE_STATS,
@@ -135,9 +133,11 @@ class MainActivity : AppCompatActivity() {
         )
         return mode == android.app.AppOpsManager.MODE_ALLOWED
     }
+
     private fun requestUsageAccess() {
         startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
     }
+
     private fun showUsageStats() {
         tvResult.text = """
             Monitoring aktif.
@@ -145,7 +145,6 @@ class MainActivity : AppCompatActivity() {
             dan dikirim ke server setiap 15 menit.
         """.trimIndent()
     }
-
 
     private fun schedulePeriodicMonitoring() {
         val workManager = WorkManager.getInstance(applicationContext)
@@ -155,11 +154,9 @@ class MainActivity : AppCompatActivity() {
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
 
-        // Interval: 15 Menit (900.000 ms)
-        // Flex: 5 Menit (WorkManager akan mencoba berjalan antara menit ke-10 hingga menit ke-15)
         val periodicWorkRequest = PeriodicWorkRequestBuilder<UsageDataWorker>(
-            15, TimeUnit.MINUTES,    // Jeda Total
-            5, TimeUnit.MINUTES     // Jendela Fleksibel (Minimal 5 Menit)
+            15, TimeUnit.MINUTES,
+            5, TimeUnit.MINUTES
         )
             .setConstraints(constraints)
             .addTag(tag)
