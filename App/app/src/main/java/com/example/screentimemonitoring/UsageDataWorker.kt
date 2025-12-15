@@ -2,6 +2,7 @@ package com.example.screentimemonitoring
 
 import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
+import android.app.usage.UsageEvents
 import android.content.Context
 import android.util.Log
 import android.app.NotificationChannel
@@ -16,13 +17,13 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
+import java.util.Calendar
 
 
 class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
     CoroutineWorker(appContext, workerParams) {
 
     companion object {
-        // Deklarasi TAG statis, digunakan di seluruh kelas
         private const val TAG = "WorkerDebug"
     }
 
@@ -35,20 +36,19 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
         }
 
         return try {
-            val (jsonArray, totalScreenTimeSeconds) = getUsageStats()
+            val (jsonArray, totalScreenTimeSeconds) = getDailyUsageData()
 
             sendDataToServer(jsonArray, totalScreenTimeSeconds)
-         
+
             Log.d(TAG, "Worker SUCCEEDED: Data sent to server.")
             Result.success()
         } catch (e: Exception) {
-            // 4. Gagal (termasuk kegagalan jaringan/server)
             Log.e(TAG, "Worker FAILED (Network/Logic Error): ${e.message}", e)
             e.printStackTrace()
-            // WorkManager akan mencoba lagi (retry)
             Result.retry()
         }
     }
+
     private fun hasUsageAccess(): Boolean {
         val appOps =
             applicationContext.getSystemService(Context.APP_OPS_SERVICE) as android.app.AppOpsManager
@@ -59,53 +59,131 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
         )
         return mode == android.app.AppOpsManager.MODE_ALLOWED
     }
-    private fun getUsageStats(): Pair<JSONArray, Long> {
-        val usageStatsManager = applicationContext.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-        val endTime = System.currentTimeMillis()
-        val startTime = endTime - 1000 * 60 * 60 * 24
+    private fun getRealScreenTime(
+        usageStatsManager: UsageStatsManager,
+        startTime: Long,
+        endTime: Long
+    ): Long {
 
-        val usageStatsList: List<UsageStats> = usageStatsManager.queryUsageStats(
-            UsageStatsManager.INTERVAL_BEST,
-            startTime,
-            endTime
-        )
+        val usageEvents = usageStatsManager.queryEvents(startTime, endTime)
+        val event = UsageEvents.Event()
+
+        var lastResumeTime = 0L
+        var totalScreenTimeMs = 0L
+        var currentPackage: String? = null
+
+        while (usageEvents.hasNextEvent()) {
+            usageEvents.getNextEvent(event)
+
+            when (event.eventType) {
+
+                UsageEvents.Event.ACTIVITY_RESUMED -> {
+                    lastResumeTime = event.timeStamp
+                    currentPackage = event.packageName
+                }
+
+                UsageEvents.Event.ACTIVITY_PAUSED -> {
+                    if (lastResumeTime > 0 && currentPackage == event.packageName) {
+                        val duration = event.timeStamp - lastResumeTime
+                        if (duration in 1..(60 * 60 * 1000)) {
+                            totalScreenTimeMs += duration
+                        }
+                    }
+                    lastResumeTime = 0L
+                    currentPackage = null
+                }
+            }
+        }
+
+        // 🔴 INI YANG PENTING
+        if (lastResumeTime > 0) {
+            val duration = endTime - lastResumeTime
+            if (duration in 1..(60 * 60 * 1000)) {
+                totalScreenTimeMs += duration
+            }
+        }
+
+        return totalScreenTimeMs / 1000
+    }
+
+    private fun getDailyUsageData(): Pair<JSONArray, Long> {
+
+        val usageStatsManager =
+            applicationContext.getSystemService(Context.USAGE_STATS_SERVICE)
+                    as UsageStatsManager
+
+        val calendar = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+
+        val startTime = calendar.timeInMillis
+        val endTime = System.currentTimeMillis()
+
+        val realScreenTimeSeconds =
+            getRealScreenTime(usageStatsManager, startTime, endTime)
+
+        val topApps =
+            getTopAppsUsage(usageStatsManager, startTime, endTime)
+
+        Log.d(TAG, "REAL SCREEN TIME: ${realScreenTimeSeconds / 3600.0} hours")
+
+        return Pair(topApps, realScreenTimeSeconds)
+    }
+
+    private fun getTopAppsUsage(
+        usageStatsManager: UsageStatsManager,
+        startTime: Long,
+        endTime: Long
+    ): JSONArray {
+
+        val usageStatsMap =
+            usageStatsManager.queryAndAggregateUsageStats(startTime, endTime)
 
         val usageMap = mutableMapOf<String, Long>()
-        var totalScreenTimeSeconds: Long = 0
-        for (usage in usageStatsList) {
-            val totalSec = usage.totalTimeInForeground / 1000
-            if (totalSec > 0) {
-                usageMap[usage.packageName] = (usageMap[usage.packageName] ?: 0) + totalSec
-                totalScreenTimeSeconds += totalSec
-            }
+
+        for ((pkg, stats) in usageStatsMap) {
+            val sec = stats.totalTimeInForeground / 1000
+            if (sec <= 0) continue
+
+            if (pkg.startsWith("com.android.") &&
+                !pkg.contains("chrome")) continue
+
+            usageMap[pkg] = sec
         }
 
-        val jsonArray = JSONArray()
         val pm = applicationContext.packageManager
-        val top10 = usageMap.entries.sortedByDescending { it.value }.take(10)
+        val jsonArray = JSONArray()
 
-        for ((pkg, totalSec) in top10) {
-            val appName = try {
-                pm.getApplicationLabel(pm.getApplicationInfo(pkg, 0)).toString()
-            } catch (e: Exception) {
-                pkg
+        usageMap.entries
+            .sortedByDescending { it.value }
+            .take(10)
+            .forEach { (pkg, sec) ->
+
+                val appName = try {
+                    pm.getApplicationLabel(pm.getApplicationInfo(pkg, 0)).toString()
+                } catch (e: Exception) {
+                    pkg
+                }
+
+                val obj = JSONObject()
+                obj.put("package", pkg)
+                obj.put("app_name", appName)
+                obj.put("foreground_time_s", sec)
+                jsonArray.put(obj)
             }
 
-            val jsonObj = JSONObject()
-            jsonObj.put("package", pkg)
-            jsonObj.put("app_name", appName)
-            jsonObj.put("foreground_time_s", totalSec.toInt())
-            jsonArray.put(jsonObj)
-        }
-        return Pair(jsonArray, totalScreenTimeSeconds)
+        return jsonArray
     }
+
 
     private fun showNotification(message: String) {
         val channelId = "usage_monitor_channel"
         val notificationManager =
             applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        // Buat channel untuk Android 8 ke atas
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
@@ -125,6 +203,7 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
 
         notificationManager.notify(1, notification)
     }
+
     @Throws(IOException::class)
     private fun sendDataToServer(jsonArray: JSONArray, totalScreenTimeSeconds: Long) {
         val finalPayload = JSONObject()
@@ -152,10 +231,25 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
 
             if (responseBody != null) {
                 val json = JSONObject(responseBody)
+
+                val level = json.optString("level", "rendah")
                 val message = json.optString("message", "")
 
-                if (message.isNotEmpty()) {
+                // Simpan status terakhir (untuk ditampilkan di MainActivity)
+                val prefs = applicationContext.getSharedPreferences(
+                    "stress_prefs",
+                    Context.MODE_PRIVATE
+                )
+                prefs.edit()
+                    .putString("last_stress_level", level)
+                    .putString("last_stress_message", message)
+                    .apply()
+
+                if (level.equals("tinggi", ignoreCase = true) && message.isNotEmpty()) {
                     showNotification(message)
+                    Log.d(TAG, "Notifikasi ditampilkan (level: tinggi)")
+                } else {
+                    Log.d(TAG, "Level $level → tidak ada notifikasi")
                 }
             }
         }

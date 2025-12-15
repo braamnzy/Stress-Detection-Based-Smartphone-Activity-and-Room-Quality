@@ -14,13 +14,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.work.*
 import java.util.concurrent.TimeUnit
+import java.util.Calendar
 import android.Manifest
 import android.content.pm.PackageManager
 import android.app.AlertDialog
 import android.widget.EditText
 import android.text.InputType
-import android.view.View
-import androidx.work.WorkInfo
 
 
 class MainActivity : AppCompatActivity() {
@@ -50,9 +49,9 @@ class MainActivity : AppCompatActivity() {
             if (hasUsageAccess()) {
                 showUsageStats()
                 schedulePeriodicMonitoring()
-                tvResult.append("\n\n✅ Monitoring Berkala (15 Menit) WorkManager Dijadwalkan!")
+                showLastStressStatus()
             } else {
-                tvResult.text = "Akses belum diizinkan! Klik tombol atas dulu."
+                tvResult.text = "Akses belum diizinkan!"
             }
         }
 
@@ -60,13 +59,11 @@ class MainActivity : AppCompatActivity() {
             schedulePeriodicMonitoring()
         }
     }
-
     private fun setupChangeIpButton() {
         btnChangeIp.setOnClickListener {
             showIpInputDialog()
         }
     }
-
     private fun showIpInputDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Ubah Alamat Server Flask")
@@ -99,6 +96,15 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
         intent.data = Uri.parse("package:$packageName")
         startActivity(intent)
+    }
+    private fun showLastStressStatus() {
+        val prefs = getSharedPreferences("stress_prefs", Context.MODE_PRIVATE)
+        val message = prefs.getString(
+            "last_stress_message",
+            "Belum ada analisis stres."
+        )
+
+        tvResult.append("\n\n🧠 Status Stres Terakhir:\n$message")
     }
     private fun requestNotificationPermission() {
         // Cek jika versi Android adalah TIRAMISU (API 33) atau lebih tinggi
@@ -133,54 +139,14 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
     }
     private fun showUsageStats() {
-        val usageStatsManager = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-        val endTime = System.currentTimeMillis()
-        val startTime = endTime - 1000 * 60 * 60 * 24 // 24 jam terakhir
-
-        val usageStatsList: List<UsageStats> = usageStatsManager.queryUsageStats(
-            UsageStatsManager.INTERVAL_BEST,
-            startTime,
-            endTime
-        )
-
-        if (usageStatsList.isNullOrEmpty()) {
-            tvResult.text = "Data kosong! Pastikan izin akses penggunaan sudah diaktifkan."
-            return
-        }
-
-        val usageMap = mutableMapOf<String, Long>()
-        var totalScreenTimeSeconds: Long = 0
-        for (usage in usageStatsList) {
-            val totalSec = usage.totalTimeInForeground / 1000
-            if (totalSec > 0) {
-                usageMap[usage.packageName] = (usageMap[usage.packageName] ?: 0) + totalSec
-                totalScreenTimeSeconds += totalSec
-            }
-        }
-
-        val sb = StringBuilder()
-        sb.append("=== Top 10 Penggunaan 24 Jam Terakhir ===\n\n")
-
-        val pm = packageManager
-        val top10 = usageMap.entries.sortedByDescending { it.value }.take(10)
-
-        for ((pkg, totalSec) in top10) {
-            val appName = try {
-                pm.getApplicationLabel(pm.getApplicationInfo(pkg, 0)).toString()
-            } catch (e: Exception) {
-                pkg
-            }
-
-            val jam = totalSec / 3600
-            val menit = (totalSec % 3600) / 60
-            val detik = totalSec % 60
-
-            sb.append("$appName ($pkg) → ${jam}h ${menit}m ${detik}s\n\n")
-        }
-
-        tvResult.text = sb.toString()
+        tvResult.text = """
+            Monitoring aktif.
+            Data penggunaan layar dihitung otomatis di background
+            dan dikirim ke server setiap 15 menit.
+        """.trimIndent()
     }
-    
+
+
     private fun schedulePeriodicMonitoring() {
         val workManager = WorkManager.getInstance(applicationContext)
         val tag = "UsageMonitorTag"
@@ -204,8 +170,5 @@ class MainActivity : AppCompatActivity() {
             ExistingPeriodicWorkPolicy.REPLACE,
             periodicWorkRequest
         )
-
-        // Log di UI
-        tvResult.append("\n\n✅ MONITORING BERKALA (Interval 15 Menit) DIJADWALKAN ULANG.")
     }
 }

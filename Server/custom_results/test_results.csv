@@ -1,0 +1,9 @@
+id,screentime,temperature,humidity,air_quality,stress_value,category,description
+1,10,35,85,1.0,80.00000000000004,Tinggi,"T1: Screen Tnggi, Env Buruk"
+2,2,25,50,0.8,50.000000000000036,Sedang,"T2: Screen Rndh, AQ Buruk"
+3,2,25,95,0.1,20.0,Rendah,T3: Humid Sangat Lembab
+4,3,24,50,0.1,19.999999999999993,Rendah,T4: Kondisi Optimal
+5,0,10,0,0.0,20.000000000000004,Rendah,T5: Input Minimum
+6,12,40,100,5.0,80.00000000000004,Tinggi,T6: Input Maximum
+7,1,15,40,0.4,19.999999999999996,Rendah,"T7: Dingin, AQ Sedang"
+8,5,38,50,0.5,50.0,Sedang,"T8: Panas, AQ Sedang"

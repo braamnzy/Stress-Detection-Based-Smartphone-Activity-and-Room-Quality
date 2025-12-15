@@ -25,6 +25,7 @@ def format_hms(seconds):
 
 DATA_FOLDER = "data"
 CSV_OVERALL = os.path.join(DATA_FOLDER, "dataset_overall.csv")
+CSV_DETAIL_USAGE = os.path.join(DATA_FOLDER, "dataset_detail_usage.csv")
 
 os.makedirs(DATA_FOLDER, exist_ok=True)
 
@@ -34,8 +35,14 @@ if not os.path.exists(CSV_OVERALL):
         writer.writerow([
             "timestamp", "source",
             "temperature", "humidity", "air_quality",
-            "app_count", "total_usage_time", 
-            "fuzzy_level", "message"
+            "total_usage_time", "fuzzy_level", "message"
+        ])
+
+if not os.path.exists(CSV_DETAIL_USAGE):
+    with open(CSV_DETAIL_USAGE, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow([
+            "timestamp_received", "package_name", "app_name", "foreground_time_s"
         ])
 
 
@@ -62,7 +69,6 @@ def receive_usage():
     formatted_total = format_hms(total_sec_all)
     total_hours = total_sec_all / 3600
 
-    # ==== FUZZY LOGIC ====
     result = fuzzy_logic.calculate_stress(
         total_hours,
         LAST_TEMPERATURE,
@@ -75,10 +81,9 @@ def receive_usage():
 
     print(f"\n[{now}] === Android Usage Data ===")
     print(f"Total Screen Time: {formatted_total} → Level: {level}")
-    print(f"Suhu dipakai: {LAST_TEMPERATURE}°C, Humid: {LAST_HUMIDITY}%, AQ: {LAST_AIRQUALITY}%")
+    print(f"Suhu dipakai: {LAST_TEMPERATURE}°C, Humid: {LAST_HUMIDITY}%, AQ: {LAST_AIRQUALITY} ppm")
     print(f"FUZZY MESSAGE: {message}")
 
-    # Tulis ke CSV
     with open(CSV_OVERALL, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
 
@@ -94,15 +99,25 @@ def receive_usage():
         if timedelta(seconds=0) <= time_difference <= TIME_PROXIMITY_THRESHOLD:
             iot_message = f"IoT data (T:{LAST_TEMPERATURE}) saved due to proximity rule."
 
-            writer.writerow([
-                LAST_IOT_TIMESTAMP.isoformat(), "iot_proximal",
-                LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY,
-                "", "", "", iot_message,
-                ""
-            ])
             print(f"[INFO] PROXIMITY LOGGED: Data IoT ({LAST_IOT_TIMESTAMP.strftime('%H:%M:%S')}) disimpan ke CSV.")
+
         else:
             print(f"[INFO] PROXIMITY CHECK: Data IoT terakhir ({LAST_IOT_TIMESTAMP.strftime('%H:%M:%S')}) terlalu jauh. Tidak disimpan.")
+
+    if usage_list:
+        with open(CSV_DETAIL_USAGE, "a", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            for usage_item in usage_list:
+                pkg_name = usage_item.get("package", "N/A")
+                app_name = usage_item.get("app_name", "N/A")
+                time_s = usage_item.get("foreground_time_s", 0)
+                
+                writer.writerow([
+                    now,           
+                    pkg_name,      
+                    app_name,      
+                    time_s         
+                ])
 
     return jsonify({
         "status": "ok",
@@ -134,7 +149,7 @@ def receive_sensor():
     now = datetime.now().isoformat()
 
     print(f"\n[{now}] === IoT Sensor Data ===")
-    print(f"Suhu: {suhu} °C | Humid: {kelembapan}% | AQ: {kualitas_udara}%")
+    print(f"Suhu: {suhu} °C | Humid: {kelembapan}% | AQ: {kualitas_udara} ppm")
 
     return jsonify({
         "status": "ok",
@@ -147,6 +162,7 @@ def receive_sensor():
 
 
 # RUN SERVER
+
 if __name__ == "__main__":
     print("Server Flask aktif di http://0.0.0.0:5000 ...")
     app.run(host="0.0.0.0", port=5000, debug=True)
