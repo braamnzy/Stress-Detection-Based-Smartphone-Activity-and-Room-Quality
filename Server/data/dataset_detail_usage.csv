@@ -689,3 +689,13 @@ timestamp_received,package_name,app_name,foreground_time_s
 2025-12-15T22:47:18.957270,com.google.android.gms,Google Play services,413
 2025-12-15T22:47:18.957270,com.facebook.katana,com.facebook.katana,250
 2025-12-15T22:47:18.957270,com.twitter.android,com.twitter.android,241
+2025-12-15T23:03:30.132549,com.mobile.legends,com.mobile.legends,45955
+2025-12-15T23:03:30.132549,com.ss.android.ugc.trill,com.ss.android.ugc.trill,12465
+2025-12-15T23:03:30.132549,com.instagram.android,com.instagram.android,6741
+2025-12-15T23:03:30.132549,com.whatsapp,com.whatsapp,4531
+2025-12-15T23:03:30.132549,com.miui.home,System launcher,2954
+2025-12-15T23:03:30.132549,com.google.android.youtube,com.google.android.youtube,2182
+2025-12-15T23:03:30.132549,com.google.android.apps.wellbeing,Digital Wellbeing,764
+2025-12-15T23:03:30.132549,com.google.android.gms,Google Play services,413
+2025-12-15T23:03:30.132549,com.facebook.katana,com.facebook.katana,250
+2025-12-15T23:03:30.132549,com.twitter.android,com.twitter.android,241

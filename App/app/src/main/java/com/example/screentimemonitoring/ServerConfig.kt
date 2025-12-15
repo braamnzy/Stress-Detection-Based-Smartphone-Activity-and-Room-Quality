@@ -1,5 +1,3 @@
-// ServerConfig.kt
-
 package com.example.screentimemonitoring
 
 object ServerConfig {

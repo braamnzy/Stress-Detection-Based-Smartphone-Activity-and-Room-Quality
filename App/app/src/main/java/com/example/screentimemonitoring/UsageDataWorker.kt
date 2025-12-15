@@ -1,6 +1,5 @@
 package com.example.screentimemonitoring
 
-import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.app.usage.UsageEvents
 import android.content.Context
@@ -96,7 +95,6 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
             }
         }
 
-        // 🔴 INI YANG PENTING
         if (lastResumeTime > 0) {
             val duration = endTime - lastResumeTime
             if (duration in 1..(60 * 60 * 1000)) {
