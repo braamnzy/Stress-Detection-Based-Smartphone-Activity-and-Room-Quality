@@ -159,7 +159,7 @@ stress_sim = ctrl.ControlSystemSimulation(stress_ctrl)
 
 def calculate_stress(screentime, temperature, humidity, air_quality):
     screentime = float(max(0, min(screentime, 12)))
-    temperature = float(max(10, min(temperature, 40)))
+    temperature = float(max(10, min(temperature, 46)))
     humidity = float(max(0, min(humidity, 100)))
     air_quality = float(max(0, min(air_quality, 100)))
 

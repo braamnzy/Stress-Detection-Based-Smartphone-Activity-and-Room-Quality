@@ -34,17 +34,20 @@ class MainActivity : AppCompatActivity() {
         btnRequestPermission = findViewById(R.id.btnRequestPermission)
         btnGetUsage = findViewById(R.id.btnUsage)
         btnChangeIp = findViewById(R.id.btnChangeIp)
-        setupChangeIpButton()
+
         requestNotificationPermission()
-        btnRequestPermission.setOnClickListener {
-            requestUsageAccess()
-        }
+
         if (!isIgnoringBatteryOptimizations()) {
             requestDisableBatteryOptimization()
         }
+
+        btnRequestPermission.setOnClickListener {
+            requestUsageAccess()
+        }
+
         btnGetUsage.setOnClickListener {
             if (hasUsageAccess()) {
-                showUsageStats()
+                showStats()
                 schedulePeriodicMonitoring()
                 showLastStressStatus()
             } else {
@@ -52,13 +55,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (hasUsageAccess()) {
-            schedulePeriodicMonitoring()
-        }
-    }
-    private fun setupChangeIpButton() {
         btnChangeIp.setOnClickListener {
             showIpInputDialog()
+        }
+
+        if (hasUsageAccess()) {
+            schedulePeriodicMonitoring()
         }
     }
 
@@ -138,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
     }
 
-    private fun showUsageStats() {
+    private fun showStats() {
         tvResult.text = """
             Monitoring aktif.
             Data penggunaan layar dihitung otomatis di background

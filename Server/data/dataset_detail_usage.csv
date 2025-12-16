@@ -1,454 +1,4 @@
 timestamp_received,package_name,app_name,foreground_time_s
-2025-12-12T13:17:22.741946,com.mobile.legends,com.mobile.legends,20397
-2025-12-12T13:17:22.741946,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11028
-2025-12-12T13:17:22.741946,com.miui.home,System launcher,4528
-2025-12-12T13:17:22.741946,com.instagram.android,com.instagram.android,2840
-2025-12-12T13:17:22.741946,com.twitter.android,com.twitter.android,2371
-2025-12-12T13:17:22.741946,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T13:17:22.741946,com.android.chrome,com.android.chrome,1457
-2025-12-12T13:17:22.741946,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T13:17:22.741946,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T13:17:22.741946,com.lazada.android,com.lazada.android,866
-2025-12-12T13:32:23.121598,com.mobile.legends,com.mobile.legends,20397
-2025-12-12T13:32:23.121598,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11028
-2025-12-12T13:32:23.121598,com.miui.home,System launcher,4529
-2025-12-12T13:32:23.121598,com.instagram.android,com.instagram.android,2840
-2025-12-12T13:32:23.121598,com.twitter.android,com.twitter.android,2371
-2025-12-12T13:32:23.121598,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T13:32:23.121598,com.android.chrome,com.android.chrome,1457
-2025-12-12T13:32:23.121598,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T13:32:23.121598,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T13:32:23.121598,com.lazada.android,com.lazada.android,866
-2025-12-12T13:47:23.522477,com.mobile.legends,com.mobile.legends,20476
-2025-12-12T13:47:23.522477,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11028
-2025-12-12T13:47:23.522477,com.miui.home,System launcher,4530
-2025-12-12T13:47:23.522477,com.instagram.android,com.instagram.android,2840
-2025-12-12T13:47:23.522477,com.twitter.android,com.twitter.android,2371
-2025-12-12T13:47:23.522477,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T13:47:23.522477,com.android.chrome,com.android.chrome,1457
-2025-12-12T13:47:23.522477,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T13:47:23.522477,com.whatsapp,com.whatsapp,1137
-2025-12-12T13:47:23.522477,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T14:02:23.892959,com.mobile.legends,com.mobile.legends,21676
-2025-12-12T14:02:23.892959,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11028
-2025-12-12T14:02:23.892959,com.miui.home,System launcher,4530
-2025-12-12T14:02:23.892959,com.instagram.android,com.instagram.android,2840
-2025-12-12T14:02:23.892959,com.twitter.android,com.twitter.android,2371
-2025-12-12T14:02:23.892959,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T14:02:23.892959,com.android.chrome,com.android.chrome,1457
-2025-12-12T14:02:23.892959,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T14:02:23.892959,com.whatsapp,com.whatsapp,1137
-2025-12-12T14:02:23.892959,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T14:17:24.407725,com.mobile.legends,com.mobile.legends,21676
-2025-12-12T14:17:24.407725,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11028
-2025-12-12T14:17:24.407725,com.miui.home,System launcher,4530
-2025-12-12T14:17:24.407725,com.instagram.android,com.instagram.android,2840
-2025-12-12T14:17:24.407725,com.twitter.android,com.twitter.android,2371
-2025-12-12T14:17:24.407725,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T14:17:24.407725,com.android.chrome,com.android.chrome,1457
-2025-12-12T14:17:24.407725,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T14:17:24.407725,com.whatsapp,com.whatsapp,1137
-2025-12-12T14:17:24.407725,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T14:32:24.785209,com.mobile.legends,com.mobile.legends,22876
-2025-12-12T14:32:24.785209,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11028
-2025-12-12T14:32:24.785209,com.miui.home,System launcher,4530
-2025-12-12T14:32:24.785209,com.instagram.android,com.instagram.android,2840
-2025-12-12T14:32:24.785209,com.twitter.android,com.twitter.android,2371
-2025-12-12T14:32:24.785209,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T14:32:24.785209,com.android.chrome,com.android.chrome,1457
-2025-12-12T14:32:24.785209,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T14:32:24.785209,com.whatsapp,com.whatsapp,1137
-2025-12-12T14:32:24.785209,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T14:47:25.133774,com.mobile.legends,com.mobile.legends,24076
-2025-12-12T14:47:25.133774,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11028
-2025-12-12T14:47:25.133774,com.miui.home,System launcher,4530
-2025-12-12T14:47:25.133774,com.instagram.android,com.instagram.android,2840
-2025-12-12T14:47:25.133774,com.twitter.android,com.twitter.android,2371
-2025-12-12T14:47:25.133774,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T14:47:25.133774,com.android.chrome,com.android.chrome,1457
-2025-12-12T14:47:25.133774,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T14:47:25.133774,com.whatsapp,com.whatsapp,1137
-2025-12-12T14:47:25.133774,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T15:02:25.540941,com.mobile.legends,com.mobile.legends,25276
-2025-12-12T15:02:25.540941,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11028
-2025-12-12T15:02:25.540941,com.miui.home,System launcher,4530
-2025-12-12T15:02:25.540941,com.instagram.android,com.instagram.android,2840
-2025-12-12T15:02:25.540941,com.twitter.android,com.twitter.android,2371
-2025-12-12T15:02:25.540941,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T15:02:25.540941,com.android.chrome,com.android.chrome,1457
-2025-12-12T15:02:25.540941,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T15:02:25.540941,com.whatsapp,com.whatsapp,1137
-2025-12-12T15:02:25.540941,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T15:17:25.992403,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T15:17:25.992403,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11229
-2025-12-12T15:17:25.992403,com.miui.home,System launcher,4533
-2025-12-12T15:17:25.992403,com.instagram.android,com.instagram.android,2840
-2025-12-12T15:17:25.992403,com.twitter.android,com.twitter.android,2371
-2025-12-12T15:17:25.992403,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T15:17:25.992403,com.android.chrome,com.android.chrome,1457
-2025-12-12T15:17:25.992403,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T15:17:25.992403,com.whatsapp,com.whatsapp,1137
-2025-12-12T15:17:25.992403,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T15:32:26.524169,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T15:32:26.524169,com.ss.android.ugc.trill,com.ss.android.ugc.trill,12135
-2025-12-12T15:32:26.524169,com.miui.home,System launcher,4533
-2025-12-12T15:32:26.524169,com.instagram.android,com.instagram.android,2840
-2025-12-12T15:32:26.524169,com.twitter.android,com.twitter.android,2371
-2025-12-12T15:32:26.524169,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T15:32:26.524169,com.android.chrome,com.android.chrome,1457
-2025-12-12T15:32:26.524169,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T15:32:26.524169,com.whatsapp,com.whatsapp,1137
-2025-12-12T15:32:26.524169,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T15:47:26.929478,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T15:47:26.929478,com.ss.android.ugc.trill,com.ss.android.ugc.trill,12620
-2025-12-12T15:47:26.929478,com.miui.home,System launcher,4533
-2025-12-12T15:47:26.929478,com.instagram.android,com.instagram.android,2840
-2025-12-12T15:47:26.929478,com.twitter.android,com.twitter.android,2371
-2025-12-12T15:47:26.929478,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T15:47:26.929478,com.android.chrome,com.android.chrome,1457
-2025-12-12T15:47:26.929478,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T15:47:26.929478,com.whatsapp,com.whatsapp,1137
-2025-12-12T15:47:26.929478,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T16:03:39.569623,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T16:03:39.569623,com.ss.android.ugc.trill,com.ss.android.ugc.trill,13592
-2025-12-12T16:03:39.569623,com.miui.home,System launcher,4533
-2025-12-12T16:03:39.569623,com.instagram.android,com.instagram.android,2840
-2025-12-12T16:03:39.569623,com.twitter.android,com.twitter.android,2371
-2025-12-12T16:03:39.569623,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T16:03:39.569623,com.android.chrome,com.android.chrome,1457
-2025-12-12T16:03:39.569623,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T16:03:39.569623,com.whatsapp,com.whatsapp,1137
-2025-12-12T16:03:39.569623,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T16:18:39.953405,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T16:18:39.953405,com.ss.android.ugc.trill,com.ss.android.ugc.trill,13635
-2025-12-12T16:18:39.953405,com.miui.home,System launcher,4548
-2025-12-12T16:18:39.953405,com.instagram.android,com.instagram.android,3362
-2025-12-12T16:18:39.953405,com.twitter.android,com.twitter.android,2655
-2025-12-12T16:18:39.953405,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T16:18:39.953405,com.android.chrome,com.android.chrome,1457
-2025-12-12T16:18:39.953405,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T16:18:39.953405,com.whatsapp,com.whatsapp,1144
-2025-12-12T16:18:39.953405,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T16:33:41.294667,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T16:33:41.294667,com.ss.android.ugc.trill,com.ss.android.ugc.trill,13635
-2025-12-12T16:33:41.294667,com.miui.home,System launcher,4557
-2025-12-12T16:33:41.294667,com.twitter.android,com.twitter.android,3530
-2025-12-12T16:33:41.294667,com.instagram.android,com.instagram.android,3362
-2025-12-12T16:33:41.294667,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T16:33:41.294667,com.android.chrome,com.android.chrome,1457
-2025-12-12T16:33:41.294667,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T16:33:41.294667,com.whatsapp,com.whatsapp,1144
-2025-12-12T16:33:41.294667,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T16:48:41.812416,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T16:48:41.812416,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14199
-2025-12-12T16:48:41.812416,com.miui.home,System launcher,4560
-2025-12-12T16:48:41.812416,com.twitter.android,com.twitter.android,3715
-2025-12-12T16:48:41.812416,com.instagram.android,com.instagram.android,3362
-2025-12-12T16:48:41.812416,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T16:48:41.812416,com.android.chrome,com.android.chrome,1457
-2025-12-12T16:48:41.812416,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T16:48:41.812416,com.whatsapp,com.whatsapp,1144
-2025-12-12T16:48:41.812416,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T17:04:01.902773,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T17:04:01.902773,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14397
-2025-12-12T17:04:01.902773,com.miui.home,System launcher,5162
-2025-12-12T17:04:01.902773,com.twitter.android,com.twitter.android,3715
-2025-12-12T17:04:01.902773,com.instagram.android,com.instagram.android,3362
-2025-12-12T17:04:01.902773,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T17:04:01.902773,com.android.chrome,com.android.chrome,1457
-2025-12-12T17:04:01.902773,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T17:04:01.902773,com.whatsapp,com.whatsapp,1144
-2025-12-12T17:04:01.902773,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T17:19:07.008794,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T17:19:07.008794,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14397
-2025-12-12T17:19:07.008794,com.miui.home,System launcher,5162
-2025-12-12T17:19:07.008794,com.twitter.android,com.twitter.android,3715
-2025-12-12T17:19:07.008794,com.instagram.android,com.instagram.android,3362
-2025-12-12T17:19:07.008794,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T17:19:07.008794,com.android.chrome,com.android.chrome,1457
-2025-12-12T17:19:07.008794,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T17:19:07.008794,com.whatsapp,com.whatsapp,1144
-2025-12-12T17:19:07.008794,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T17:34:30.206403,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T17:34:30.206403,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14397
-2025-12-12T17:34:30.206403,com.miui.home,System launcher,5166
-2025-12-12T17:34:30.206403,com.twitter.android,com.twitter.android,3715
-2025-12-12T17:34:30.206403,com.instagram.android,com.instagram.android,3362
-2025-12-12T17:34:30.206403,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T17:34:30.206403,com.android.chrome,com.android.chrome,1457
-2025-12-12T17:34:30.206403,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T17:34:30.206403,com.whatsapp,com.whatsapp,1144
-2025-12-12T17:34:30.206403,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T17:50:20.895943,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T17:50:20.895943,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14397
-2025-12-12T17:50:20.895943,com.miui.home,System launcher,5166
-2025-12-12T17:50:20.895943,com.twitter.android,com.twitter.android,3715
-2025-12-12T17:50:20.895943,com.instagram.android,com.instagram.android,3362
-2025-12-12T17:50:20.895943,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T17:50:20.895943,com.android.chrome,com.android.chrome,1457
-2025-12-12T17:50:20.895943,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T17:50:20.895943,com.whatsapp,com.whatsapp,1144
-2025-12-12T17:50:20.895943,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T18:05:25.274842,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T18:05:25.274842,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14397
-2025-12-12T18:05:25.274842,com.miui.home,System launcher,5172
-2025-12-12T18:05:25.274842,com.twitter.android,com.twitter.android,3715
-2025-12-12T18:05:25.274842,com.instagram.android,com.instagram.android,3362
-2025-12-12T18:05:25.274842,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T18:05:25.274842,com.android.chrome,com.android.chrome,1457
-2025-12-12T18:05:25.274842,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T18:05:25.274842,com.whatsapp,com.whatsapp,1144
-2025-12-12T18:05:25.274842,com.example.screentimemonitoring,Mentarooms,993
-2025-12-12T18:20:26.201724,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T18:20:26.201724,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14400
-2025-12-12T18:20:26.201724,com.miui.home,System launcher,5175
-2025-12-12T18:20:26.201724,com.twitter.android,com.twitter.android,3715
-2025-12-12T18:20:26.201724,com.instagram.android,com.instagram.android,3362
-2025-12-12T18:20:26.201724,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T18:20:26.201724,com.miui.calculator,com.miui.calculator,1471
-2025-12-12T18:20:26.201724,com.android.chrome,com.android.chrome,1457
-2025-12-12T18:20:26.201724,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T18:20:26.201724,com.whatsapp,com.whatsapp,1147
-2025-12-12T19:16:26.683912,com.mobile.legends,com.mobile.legends,26096
-2025-12-12T19:16:26.683912,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14774
-2025-12-12T19:16:26.683912,com.miui.home,System launcher,5175
-2025-12-12T19:16:26.683912,com.twitter.android,com.twitter.android,3715
-2025-12-12T19:16:26.683912,com.instagram.android,com.instagram.android,3362
-2025-12-12T19:16:26.683912,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T19:16:26.683912,com.miui.calculator,com.miui.calculator,1471
-2025-12-12T19:16:26.683912,com.android.chrome,com.android.chrome,1457
-2025-12-12T19:16:26.683912,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T19:16:26.683912,com.whatsapp,com.whatsapp,1147
-2025-12-12T19:31:39.330097,com.mobile.legends,com.mobile.legends,26097
-2025-12-12T19:31:39.330097,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14796
-2025-12-12T19:31:39.330097,com.miui.home,System launcher,5179
-2025-12-12T19:31:39.330097,com.twitter.android,com.twitter.android,3715
-2025-12-12T19:31:39.330097,com.instagram.android,com.instagram.android,3362
-2025-12-12T19:31:39.330097,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T19:31:39.330097,com.miui.calculator,com.miui.calculator,1471
-2025-12-12T19:31:39.330097,com.android.chrome,com.android.chrome,1457
-2025-12-12T19:31:39.330097,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T19:31:39.330097,com.whatsapp,com.whatsapp,1147
-2025-12-12T19:46:39.769650,com.mobile.legends,com.mobile.legends,26749
-2025-12-12T19:46:39.769650,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14796
-2025-12-12T19:46:39.769650,com.miui.home,System launcher,5179
-2025-12-12T19:46:39.769650,com.twitter.android,com.twitter.android,3715
-2025-12-12T19:46:39.769650,com.instagram.android,com.instagram.android,3362
-2025-12-12T19:46:39.769650,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T19:46:39.769650,com.miui.calculator,com.miui.calculator,1471
-2025-12-12T19:46:39.769650,com.android.chrome,com.android.chrome,1457
-2025-12-12T19:46:39.769650,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T19:46:39.769650,com.whatsapp,com.whatsapp,1147
-2025-12-12T20:02:26.819321,com.mobile.legends,com.mobile.legends,27949
-2025-12-12T20:02:26.819321,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14796
-2025-12-12T20:02:26.819321,com.miui.home,System launcher,5179
-2025-12-12T20:02:26.819321,com.twitter.android,com.twitter.android,3715
-2025-12-12T20:02:26.819321,com.instagram.android,com.instagram.android,3362
-2025-12-12T20:02:26.819321,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T20:02:26.819321,com.miui.calculator,com.miui.calculator,1471
-2025-12-12T20:02:26.819321,com.android.chrome,com.android.chrome,1457
-2025-12-12T20:02:26.819321,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T20:02:26.819321,com.whatsapp,com.whatsapp,1147
-2025-12-12T20:17:28.291617,com.mobile.legends,com.mobile.legends,27949
-2025-12-12T20:17:28.291617,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14796
-2025-12-12T20:17:28.291617,com.miui.home,System launcher,5179
-2025-12-12T20:17:28.291617,com.twitter.android,com.twitter.android,3715
-2025-12-12T20:17:28.291617,com.instagram.android,com.instagram.android,3362
-2025-12-12T20:17:28.291617,com.facebook.katana,com.facebook.katana,1784
-2025-12-12T20:17:28.291617,com.miui.calculator,com.miui.calculator,1471
-2025-12-12T20:17:28.291617,com.android.chrome,com.android.chrome,1457
-2025-12-12T20:17:28.291617,id.co.bri.brimo,id.co.bri.brimo,1202
-2025-12-12T20:17:28.291617,com.whatsapp,com.whatsapp,1147
-2025-12-15T12:07:24.666346,com.mobile.legends,com.mobile.legends,38843
-2025-12-15T12:07:24.666346,com.ss.android.ugc.trill,com.ss.android.ugc.trill,32089
-2025-12-15T12:07:24.666346,com.instagram.android,com.instagram.android,6557
-2025-12-15T12:07:24.666346,com.google.android.youtube,com.google.android.youtube,6224
-2025-12-15T12:07:24.666346,com.spotify.music,com.spotify.music,2828
-2025-12-15T12:07:24.666346,com.android.chrome,com.android.chrome,2821
-2025-12-15T12:07:24.666346,com.twitter.android,com.twitter.android,2197
-2025-12-15T12:07:24.666346,com.whatsapp,com.whatsapp,2052
-2025-12-15T12:07:24.666346,com.miui.home,System launcher,518
-2025-12-15T12:07:24.666346,com.facebook.katana,com.facebook.katana,413
-2025-12-15T12:22:25.121075,com.mobile.legends,com.mobile.legends,38843
-2025-12-15T12:22:25.121075,com.ss.android.ugc.trill,com.ss.android.ugc.trill,32758
-2025-12-15T12:22:25.121075,com.instagram.android,com.instagram.android,6557
-2025-12-15T12:22:25.121075,com.google.android.youtube,com.google.android.youtube,6224
-2025-12-15T12:22:25.121075,com.spotify.music,com.spotify.music,2828
-2025-12-15T12:22:25.121075,com.android.chrome,com.android.chrome,2821
-2025-12-15T12:22:25.121075,com.twitter.android,com.twitter.android,2197
-2025-12-15T12:22:25.121075,com.whatsapp,com.whatsapp,2070
-2025-12-15T12:22:25.121075,com.miui.home,System launcher,679
-2025-12-15T12:22:25.121075,com.facebook.katana,com.facebook.katana,413
-2025-12-15T12:34:57.672405,com.mobile.legends,com.mobile.legends,38843
-2025-12-15T12:34:57.672405,com.ss.android.ugc.trill,com.ss.android.ugc.trill,32758
-2025-12-15T12:34:57.672405,com.instagram.android,com.instagram.android,5846
-2025-12-15T12:34:57.672405,com.google.android.youtube,com.google.android.youtube,2182
-2025-12-15T12:34:57.672405,com.whatsapp,com.whatsapp,1879
-2025-12-15T12:34:57.672405,com.miui.home,System launcher,695
-2025-12-15T12:34:57.672405,com.twitter.android,com.twitter.android,241
-2025-12-15T12:34:57.672405,com.android.chrome,com.android.chrome,169
-2025-12-15T12:34:57.672405,id.co.bri.brimo,id.co.bri.brimo,76
-2025-12-15T12:34:57.672405,org.telegram.messenger,org.telegram.messenger,58
-2025-12-15T12:52:54.509346,com.mobile.legends,com.mobile.legends,21598
-2025-12-15T12:52:54.509346,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T12:52:54.509346,com.instagram.android,com.instagram.android,5846
-2025-12-15T12:52:54.509346,com.whatsapp,com.whatsapp,1879
-2025-12-15T12:52:54.509346,com.miui.home,System launcher,891
-2025-12-15T12:52:54.509346,com.twitter.android,com.twitter.android,241
-2025-12-15T12:52:54.509346,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T12:52:54.509346,com.android.chrome,com.android.chrome,169
-2025-12-15T12:52:54.509346,com.example.screentimemonitoring,Mentarooms,129
-2025-12-15T12:52:54.509346,com.miui.securitycenter,Security,71
-2025-12-15T13:07:55.143495,com.mobile.legends,com.mobile.legends,21635
-2025-12-15T13:07:55.143495,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T13:07:55.143495,com.instagram.android,com.instagram.android,5869
-2025-12-15T13:07:55.143495,com.whatsapp,com.whatsapp,1906
-2025-12-15T13:07:55.143495,com.miui.home,System launcher,1081
-2025-12-15T13:07:55.143495,com.example.screentimemonitoring,Mentarooms,606
-2025-12-15T13:07:55.143495,com.twitter.android,com.twitter.android,241
-2025-12-15T13:07:55.143495,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T13:07:55.143495,com.android.chrome,com.android.chrome,169
-2025-12-15T13:07:55.143495,com.miui.securitycenter,Security,71
-2025-12-15T13:22:55.448464,com.mobile.legends,com.mobile.legends,21635
-2025-12-15T13:22:55.448464,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T13:22:55.448464,com.instagram.android,com.instagram.android,5869
-2025-12-15T13:22:55.448464,com.whatsapp,com.whatsapp,1906
-2025-12-15T13:22:55.448464,com.miui.home,System launcher,1081
-2025-12-15T13:22:55.448464,com.example.screentimemonitoring,Mentarooms,606
-2025-12-15T13:22:55.448464,com.twitter.android,com.twitter.android,241
-2025-12-15T13:22:55.448464,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T13:22:55.448464,com.android.chrome,com.android.chrome,169
-2025-12-15T13:22:55.448464,com.miui.securitycenter,Security,71
-2025-12-15T13:37:55.757913,com.mobile.legends,com.mobile.legends,22835
-2025-12-15T13:37:55.757913,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T13:37:55.757913,com.instagram.android,com.instagram.android,5869
-2025-12-15T13:37:55.757913,com.whatsapp,com.whatsapp,1906
-2025-12-15T13:37:55.757913,com.miui.home,System launcher,1081
-2025-12-15T13:37:55.757913,com.example.screentimemonitoring,Mentarooms,606
-2025-12-15T13:37:55.757913,com.twitter.android,com.twitter.android,241
-2025-12-15T13:37:55.757913,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T13:37:55.757913,com.android.chrome,com.android.chrome,169
-2025-12-15T13:37:55.757913,com.miui.securitycenter,Security,71
-2025-12-15T13:52:56.091335,com.mobile.legends,com.mobile.legends,24035
-2025-12-15T13:52:56.091335,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T13:52:56.091335,com.instagram.android,com.instagram.android,5869
-2025-12-15T13:52:56.091335,com.whatsapp,com.whatsapp,1906
-2025-12-15T13:52:56.091335,com.miui.home,System launcher,1081
-2025-12-15T13:52:56.091335,com.example.screentimemonitoring,Mentarooms,606
-2025-12-15T13:52:56.091335,com.twitter.android,com.twitter.android,241
-2025-12-15T13:52:56.091335,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T13:52:56.091335,com.android.chrome,com.android.chrome,169
-2025-12-15T13:52:56.091335,com.miui.securitycenter,Security,71
-2025-12-15T14:07:56.413094,com.mobile.legends,com.mobile.legends,25235
-2025-12-15T14:07:56.413094,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T14:07:56.413094,com.instagram.android,com.instagram.android,5869
-2025-12-15T14:07:56.413094,com.whatsapp,com.whatsapp,1906
-2025-12-15T14:07:56.413094,com.miui.home,System launcher,1081
-2025-12-15T14:07:56.413094,com.example.screentimemonitoring,Mentarooms,606
-2025-12-15T14:07:56.413094,com.twitter.android,com.twitter.android,241
-2025-12-15T14:07:56.413094,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T14:07:56.413094,com.android.chrome,com.android.chrome,169
-2025-12-15T14:07:56.413094,com.miui.securitycenter,Security,71
-2025-12-15T14:23:11.329514,com.mobile.legends,com.mobile.legends,26273
-2025-12-15T14:23:11.329514,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T14:23:11.329514,com.instagram.android,com.instagram.android,5869
-2025-12-15T14:23:11.329514,com.whatsapp,com.whatsapp,1908
-2025-12-15T14:23:11.329514,com.miui.home,System launcher,1129
-2025-12-15T14:23:11.329514,com.example.screentimemonitoring,Mentarooms,606
-2025-12-15T14:23:11.329514,com.twitter.android,com.twitter.android,241
-2025-12-15T14:23:11.329514,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T14:23:11.329514,com.android.chrome,com.android.chrome,169
-2025-12-15T14:23:11.329514,com.miui.securitycenter,Security,71
-2025-12-15T14:39:32.367404,com.mobile.legends,com.mobile.legends,26273
-2025-12-15T14:39:32.367404,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T14:39:32.367404,com.instagram.android,com.instagram.android,5869
-2025-12-15T14:39:32.367404,com.google.android.youtube,com.google.android.youtube,2182
-2025-12-15T14:39:32.367404,com.whatsapp,com.whatsapp,1962
-2025-12-15T14:39:32.367404,com.miui.home,System launcher,1243
-2025-12-15T14:39:32.367404,com.twitter.android,com.twitter.android,241
-2025-12-15T14:39:32.367404,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T14:39:32.367404,com.facebook.katana,com.facebook.katana,209
-2025-12-15T14:39:32.367404,com.android.chrome,com.android.chrome,169
-2025-12-15T14:54:56.831668,com.mobile.legends,com.mobile.legends,26273
-2025-12-15T14:54:56.831668,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T14:54:56.831668,com.instagram.android,com.instagram.android,5869
-2025-12-15T14:54:56.831668,com.whatsapp,com.whatsapp,2562
-2025-12-15T14:54:56.831668,com.google.android.youtube,com.google.android.youtube,2182
-2025-12-15T14:54:56.831668,com.miui.home,System launcher,1243
-2025-12-15T14:54:56.831668,com.twitter.android,com.twitter.android,241
-2025-12-15T14:54:56.831668,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T14:54:56.831668,com.facebook.katana,com.facebook.katana,209
-2025-12-15T14:54:56.831668,com.android.chrome,com.android.chrome,169
-2025-12-15T15:10:44.313084,com.mobile.legends,com.mobile.legends,26273
-2025-12-15T15:10:44.313084,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T15:10:44.313084,com.instagram.android,com.instagram.android,5869
-2025-12-15T15:10:44.313084,com.whatsapp,com.whatsapp,2562
-2025-12-15T15:10:44.313084,com.google.android.youtube,com.google.android.youtube,2182
-2025-12-15T15:10:44.313084,com.miui.home,System launcher,1243
-2025-12-15T15:10:44.313084,com.twitter.android,com.twitter.android,241
-2025-12-15T15:10:44.313084,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T15:10:44.313084,com.facebook.katana,com.facebook.katana,209
-2025-12-15T15:10:44.313084,com.android.chrome,com.android.chrome,169
-2025-12-15T15:25:44.784721,com.mobile.legends,com.mobile.legends,26708
-2025-12-15T15:25:44.784721,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T15:25:44.784721,com.instagram.android,com.instagram.android,5869
-2025-12-15T15:25:44.784721,com.whatsapp,com.whatsapp,2612
-2025-12-15T15:25:44.784721,com.google.android.youtube,com.google.android.youtube,2182
-2025-12-15T15:25:44.784721,com.miui.home,System launcher,1244
-2025-12-15T15:25:44.784721,com.twitter.android,com.twitter.android,241
-2025-12-15T15:25:44.784721,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T15:25:44.784721,com.facebook.katana,com.facebook.katana,209
-2025-12-15T15:25:44.784721,com.android.chrome,com.android.chrome,169
-2025-12-15T15:40:45.154947,com.mobile.legends,com.mobile.legends,27908
-2025-12-15T15:40:45.154947,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T15:40:45.154947,com.instagram.android,com.instagram.android,5869
-2025-12-15T15:40:45.154947,com.whatsapp,com.whatsapp,2612
-2025-12-15T15:40:45.154947,com.google.android.youtube,com.google.android.youtube,2182
-2025-12-15T15:40:45.154947,com.miui.home,System launcher,1244
-2025-12-15T15:40:45.154947,com.twitter.android,com.twitter.android,241
-2025-12-15T15:40:45.154947,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T15:40:45.154947,com.facebook.katana,com.facebook.katana,209
-2025-12-15T15:40:45.154947,com.android.chrome,com.android.chrome,169
-2025-12-15T15:55:45.545685,com.mobile.legends,com.mobile.legends,27908
-2025-12-15T15:55:45.545685,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T15:55:45.545685,com.instagram.android,com.instagram.android,5869
-2025-12-15T15:55:45.545685,com.whatsapp,com.whatsapp,2612
-2025-12-15T15:55:45.545685,com.google.android.youtube,com.google.android.youtube,2182
-2025-12-15T15:55:45.545685,com.miui.home,System launcher,1244
-2025-12-15T15:55:45.545685,com.twitter.android,com.twitter.android,241
-2025-12-15T15:55:45.545685,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T15:55:45.545685,com.facebook.katana,com.facebook.katana,209
-2025-12-15T15:55:45.545685,com.android.chrome,com.android.chrome,169
-2025-12-15T16:10:46.057203,com.mobile.legends,com.mobile.legends,29108
-2025-12-15T16:10:46.057203,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T16:10:46.057203,com.instagram.android,com.instagram.android,5869
-2025-12-15T16:10:46.057203,com.whatsapp,com.whatsapp,2612
-2025-12-15T16:10:46.057203,com.google.android.youtube,com.google.android.youtube,2182
-2025-12-15T16:10:46.057203,com.miui.home,System launcher,1244
-2025-12-15T16:10:46.057203,com.twitter.android,com.twitter.android,241
-2025-12-15T16:10:46.057203,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T16:10:46.057203,com.facebook.katana,com.facebook.katana,209
-2025-12-15T16:10:46.057203,com.android.chrome,com.android.chrome,169
-2025-12-15T16:25:46.427931,com.mobile.legends,com.mobile.legends,30308
-2025-12-15T16:25:46.427931,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T16:25:46.427931,com.instagram.android,com.instagram.android,5869
-2025-12-15T16:25:46.427931,com.whatsapp,com.whatsapp,2612
-2025-12-15T16:25:46.427931,com.google.android.youtube,com.google.android.youtube,2182
-2025-12-15T16:25:46.427931,com.miui.home,System launcher,1244
-2025-12-15T16:25:46.427931,com.twitter.android,com.twitter.android,241
-2025-12-15T16:25:46.427931,com.google.android.apps.wellbeing,Digital Wellbeing,220
-2025-12-15T16:25:46.427931,com.facebook.katana,com.facebook.katana,209
-2025-12-15T16:25:46.427931,com.android.chrome,com.android.chrome,169
-2025-12-15T16:40:46.749538,com.mobile.legends,com.mobile.legends,30734
-2025-12-15T16:40:46.749538,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
-2025-12-15T16:40:46.749538,com.instagram.android,com.instagram.android,5967
-2025-12-15T16:40:46.749538,com.whatsapp,com.whatsapp,2612
-2025-12-15T16:40:46.749538,com.google.android.youtube,com.google.android.youtube,2182
-2025-12-15T16:40:46.749538,com.miui.home,System launcher,1579
-2025-12-15T16:40:46.749538,com.google.android.apps.wellbeing,Digital Wellbeing,533
-2025-12-15T16:40:46.749538,com.twitter.android,com.twitter.android,241
-2025-12-15T16:40:46.749538,com.facebook.katana,com.facebook.katana,209
-2025-12-15T16:40:46.749538,com.android.chrome,com.android.chrome,169
 2025-12-15T16:53:42.331364,com.mobile.legends,com.mobile.legends,30734
 2025-12-15T16:53:42.331364,com.ss.android.ugc.trill,com.ss.android.ugc.trill,11845
 2025-12-15T16:53:42.331364,com.instagram.android,com.instagram.android,6380
@@ -699,3 +249,103 @@ timestamp_received,package_name,app_name,foreground_time_s
 2025-12-15T23:03:30.132549,com.google.android.gms,Google Play services,413
 2025-12-15T23:03:30.132549,com.facebook.katana,com.facebook.katana,250
 2025-12-15T23:03:30.132549,com.twitter.android,com.twitter.android,241
+2025-12-15T23:25:20.914313,com.mobile.legends,com.mobile.legends,45955
+2025-12-15T23:25:20.914313,com.ss.android.ugc.trill,com.ss.android.ugc.trill,12465
+2025-12-15T23:25:20.914313,com.instagram.android,com.instagram.android,6741
+2025-12-15T23:25:20.914313,com.whatsapp,com.whatsapp,4531
+2025-12-15T23:25:20.914313,com.miui.home,System launcher,2954
+2025-12-15T23:25:20.914313,com.google.android.youtube,com.google.android.youtube,2182
+2025-12-15T23:25:20.914313,com.google.android.apps.wellbeing,Digital Wellbeing,764
+2025-12-15T23:25:20.914313,com.google.android.gms,Google Play services,413
+2025-12-15T23:25:20.914313,com.facebook.katana,com.facebook.katana,250
+2025-12-15T23:25:20.914313,com.twitter.android,com.twitter.android,241
+2025-12-15T23:40:41.920531,com.mobile.legends,com.mobile.legends,45955
+2025-12-15T23:40:41.920531,com.ss.android.ugc.trill,com.ss.android.ugc.trill,12465
+2025-12-15T23:40:41.920531,com.instagram.android,com.instagram.android,6741
+2025-12-15T23:40:41.920531,com.whatsapp,com.whatsapp,4533
+2025-12-15T23:40:41.920531,com.miui.home,System launcher,2958
+2025-12-15T23:40:41.920531,com.google.android.youtube,com.google.android.youtube,2182
+2025-12-15T23:40:41.920531,com.google.android.apps.wellbeing,Digital Wellbeing,764
+2025-12-15T23:40:41.920531,com.google.android.gms,Google Play services,413
+2025-12-15T23:40:41.920531,com.example.screentimemonitoring,Mentarooms,350
+2025-12-15T23:40:41.920531,com.facebook.katana,com.facebook.katana,250
+2025-12-15T23:55:42.316869,com.mobile.legends,com.mobile.legends,45955
+2025-12-15T23:55:42.316869,com.ss.android.ugc.trill,com.ss.android.ugc.trill,12465
+2025-12-15T23:55:42.316869,com.instagram.android,com.instagram.android,6741
+2025-12-15T23:55:42.316869,com.whatsapp,com.whatsapp,4533
+2025-12-15T23:55:42.316869,com.miui.home,System launcher,2958
+2025-12-15T23:55:42.316869,com.google.android.youtube,com.google.android.youtube,2182
+2025-12-15T23:55:42.316869,com.example.screentimemonitoring,Mentarooms,1521
+2025-12-15T23:55:42.316869,com.google.android.apps.wellbeing,Digital Wellbeing,764
+2025-12-15T23:55:42.316869,com.google.android.gms,Google Play services,413
+2025-12-15T23:55:42.316869,com.facebook.katana,com.facebook.katana,250
+2025-12-16T00:10:42.655944,com.mobile.legends,com.mobile.legends,24324
+2025-12-16T00:10:42.655944,com.whatsapp,com.whatsapp,2626
+2025-12-16T00:10:42.655944,com.miui.home,System launcher,2025
+2025-12-16T00:10:42.655944,com.example.screentimemonitoring,Mentarooms,1521
+2025-12-16T00:10:42.655944,com.instagram.android,com.instagram.android,871
+2025-12-16T00:10:42.655944,com.ss.android.ugc.trill,com.ss.android.ugc.trill,620
+2025-12-16T00:10:42.655944,com.google.android.apps.wellbeing,Digital Wellbeing,544
+2025-12-16T00:10:42.655944,com.google.android.gms,Google Play services,413
+2025-12-16T00:10:42.655944,com.facebook.katana,com.facebook.katana,242
+2025-12-16T00:10:42.655944,com.grabtaxi.passenger,com.grabtaxi.passenger,159
+2025-12-16T00:25:43.725158,com.mobile.legends,com.mobile.legends,24324
+2025-12-16T00:25:43.725158,com.example.screentimemonitoring,Mentarooms,3328
+2025-12-16T00:25:43.725158,com.whatsapp,com.whatsapp,2626
+2025-12-16T00:25:43.725158,com.miui.home,System launcher,2025
+2025-12-16T00:25:43.725158,com.instagram.android,com.instagram.android,871
+2025-12-16T00:25:43.725158,com.ss.android.ugc.trill,com.ss.android.ugc.trill,620
+2025-12-16T00:25:43.725158,com.google.android.apps.wellbeing,Digital Wellbeing,544
+2025-12-16T00:25:43.725158,com.google.android.gms,Google Play services,413
+2025-12-16T00:25:43.725158,com.facebook.katana,com.facebook.katana,242
+2025-12-16T00:25:43.725158,com.grabtaxi.passenger,com.grabtaxi.passenger,159
+2025-12-16T00:40:44.432319,com.mobile.legends,com.mobile.legends,24324
+2025-12-16T00:40:44.432319,com.example.screentimemonitoring,Mentarooms,3331
+2025-12-16T00:40:44.432319,com.whatsapp,com.whatsapp,2626
+2025-12-16T00:40:44.432319,com.miui.home,System launcher,2029
+2025-12-16T00:40:44.432319,com.instagram.android,com.instagram.android,871
+2025-12-16T00:40:44.432319,com.ss.android.ugc.trill,com.ss.android.ugc.trill,825
+2025-12-16T00:40:44.432319,com.google.android.apps.wellbeing,Digital Wellbeing,544
+2025-12-16T00:40:44.432319,com.google.android.gms,Google Play services,413
+2025-12-16T00:40:44.432319,com.facebook.katana,com.facebook.katana,242
+2025-12-16T00:40:44.432319,com.grabtaxi.passenger,com.grabtaxi.passenger,159
+2025-12-16T00:55:45.226026,com.mobile.legends,com.mobile.legends,24324
+2025-12-16T00:55:45.226026,com.example.screentimemonitoring,Mentarooms,3331
+2025-12-16T00:55:45.226026,com.whatsapp,com.whatsapp,2626
+2025-12-16T00:55:45.226026,com.miui.home,System launcher,2030
+2025-12-16T00:55:45.226026,com.instagram.android,com.instagram.android,871
+2025-12-16T00:55:45.226026,com.ss.android.ugc.trill,com.ss.android.ugc.trill,825
+2025-12-16T00:55:45.226026,com.google.android.youtube,com.google.android.youtube,660
+2025-12-16T00:55:45.226026,com.google.android.apps.wellbeing,Digital Wellbeing,544
+2025-12-16T00:55:45.226026,com.google.android.gms,Google Play services,413
+2025-12-16T00:55:45.226026,com.facebook.katana,com.facebook.katana,242
+2025-12-16T15:23:08.307332,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14300
+2025-12-16T15:23:08.307332,com.instagram.android,com.instagram.android,6929
+2025-12-16T15:23:08.307332,com.whatsapp,com.whatsapp,4172
+2025-12-16T15:23:08.307332,com.android.chrome,com.android.chrome,2020
+2025-12-16T15:23:08.307332,com.instagram.barcelona,com.instagram.barcelona,1583
+2025-12-16T15:23:08.307332,com.mi.android.globallauncher,POCO Launcher,1094
+2025-12-16T15:23:08.307332,com.google.android.youtube,com.google.android.youtube,360
+2025-12-16T15:23:08.307332,com.supercell.clashroyale,com.supercell.clashroyale,311
+2025-12-16T15:23:08.307332,com.telkomsel.telkomselcm,com.telkomsel.telkomselcm,222
+2025-12-16T15:23:08.307332,id.bni.wondr,id.bni.wondr,201
+2025-12-16T15:23:50.711652,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14300
+2025-12-16T15:23:50.711652,com.instagram.android,com.instagram.android,6929
+2025-12-16T15:23:50.711652,com.whatsapp,com.whatsapp,4172
+2025-12-16T15:23:50.711652,com.android.chrome,com.android.chrome,2020
+2025-12-16T15:23:50.711652,com.instagram.barcelona,com.instagram.barcelona,1583
+2025-12-16T15:23:50.711652,com.mi.android.globallauncher,POCO Launcher,1094
+2025-12-16T15:23:50.711652,com.google.android.youtube,com.google.android.youtube,360
+2025-12-16T15:23:50.711652,com.supercell.clashroyale,com.supercell.clashroyale,311
+2025-12-16T15:23:50.711652,com.telkomsel.telkomselcm,com.telkomsel.telkomselcm,222
+2025-12-16T15:23:50.711652,id.bni.wondr,id.bni.wondr,201
+2025-12-16T15:37:43.243754,com.ss.android.ugc.trill,com.ss.android.ugc.trill,14300
+2025-12-16T15:37:43.243754,com.instagram.android,com.instagram.android,6929
+2025-12-16T15:37:43.243754,com.whatsapp,com.whatsapp,4172
+2025-12-16T15:37:43.243754,com.android.chrome,com.android.chrome,2020
+2025-12-16T15:37:43.243754,com.instagram.barcelona,com.instagram.barcelona,1583
+2025-12-16T15:37:43.243754,com.mi.android.globallauncher,POCO Launcher,1098
+2025-12-16T15:37:43.243754,com.google.android.youtube,com.google.android.youtube,360
+2025-12-16T15:37:43.243754,com.supercell.clashroyale,com.supercell.clashroyale,311
+2025-12-16T15:37:43.243754,com.telkomsel.telkomselcm,com.telkomsel.telkomselcm,222
+2025-12-16T15:37:43.243754,id.bni.wondr,id.bni.wondr,201

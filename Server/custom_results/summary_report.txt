@@ -2,61 +2,25 @@
 CUSTOM TEST CASES - FUZZY LOGIC STRESS DETECTION
 ======================================================================
 
-Generated: 2025-12-15 20:01:20
-Total Test Cases: 8
+Generated: 2025-12-16 15:13:24
+Total Test Cases: 32
 
 STRESS STATISTICS:
 ----------------------------------------------------------------------
-Mean      : 42.50
-Median    : 35.00
-Std Dev   : 26.59
-Min       : 20.00
-Max       : 80.00
+Mean      : 46.09
+Median    : 50.00
+Std Dev   : 9.22
+Min       : 25.00
+Max       : 50.00
 
 CATEGORY DISTRIBUTION:
 ----------------------------------------------------------------------
-Rendah  :   4 cases ( 50.0%)
-Sedang  :   2 cases ( 25.0%)
-Tinggi  :   2 cases ( 25.0%)
+Sedang  :  27 cases ( 84.4%)
+Rendah  :   5 cases ( 15.6%)
 
 CORRELATION WITH STRESS:
 ----------------------------------------------------------------------
-screentime     : +0.9121
-temperature    : +0.8131
-humidity       : +0.5696
-air_quality    : +0.7164
-
-DETAILED RESULTS:
-----------------------------------------------------------------------
-
-[1] T1: Screen Tnggi, Env Buruk
-    Input: Screen=10h, Temp=35°C, Humid=85%, AQ=1.0 PPM
-    Output: Stress=80.00 (Tinggi)
-
-[2] T2: Screen Rndh, AQ Buruk
-    Input: Screen=2h, Temp=25°C, Humid=50%, AQ=0.8 PPM
-    Output: Stress=50.00 (Sedang)
-
-[3] T3: Humid Sangat Lembab
-    Input: Screen=2h, Temp=25°C, Humid=95%, AQ=0.1 PPM
-    Output: Stress=20.00 (Rendah)
-
-[4] T4: Kondisi Optimal
-    Input: Screen=3h, Temp=24°C, Humid=50%, AQ=0.1 PPM
-    Output: Stress=20.00 (Rendah)
-
-[5] T5: Input Minimum
-    Input: Screen=0h, Temp=10°C, Humid=0%, AQ=0.0 PPM
-    Output: Stress=20.00 (Rendah)
-
-[6] T6: Input Maximum
-    Input: Screen=12h, Temp=40°C, Humid=100%, AQ=5.0 PPM
-    Output: Stress=80.00 (Tinggi)
-
-[7] T7: Dingin, AQ Sedang
-    Input: Screen=1h, Temp=15°C, Humid=40%, AQ=0.4 PPM
-    Output: Stress=20.00 (Rendah)
-
-[8] T8: Panas, AQ Sedang
-    Input: Screen=5h, Temp=38°C, Humid=50%, AQ=0.5 PPM
-    Output: Stress=50.00 (Sedang)
+screentime     : +0.8723
+temperature    : +0.2357
+humidity       : -0.1871
+air_quality    : +0.7834

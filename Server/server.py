@@ -7,13 +7,13 @@ import json
 
 app = Flask(__name__)
 
+# State Global untuk menyimpan data terakhir dari sensor IoT
 LAST_TEMPERATURE = 25
 LAST_HUMIDITY = 30
 LAST_AIRQUALITY = 20
 LAST_IOT_TIMESTAMP = datetime.min
 
 TIME_PROXIMITY_THRESHOLD = timedelta(minutes=5)
-
 SMARTPHONE_DATA_RECEIVED = False
 
 def format_hms(seconds):
@@ -22,33 +22,9 @@ def format_hms(seconds):
     secs = int(seconds % 60)
     return f"{hours} jam {minutes} menit {secs} detik"
 
-
 DATA_FOLDER = "data"
-CSV_OVERALL = os.path.join(DATA_FOLDER, "dataset_overall.csv")
-CSV_DETAIL_USAGE = os.path.join(DATA_FOLDER, "dataset_detail_usage.csv")
-
 os.makedirs(DATA_FOLDER, exist_ok=True)
 
-if not os.path.exists(CSV_OVERALL):
-    with open(CSV_OVERALL, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow([
-            "timestamp", "source",
-            "temperature", "humidity", "air_quality",
-            "total_usage_time", "fuzzy_level", "message"
-        ])
-
-if not os.path.exists(CSV_DETAIL_USAGE):
-    with open(CSV_DETAIL_USAGE, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow([
-            "timestamp_received", "package_name", "app_name", "foreground_time_s"
-        ])
-
-
-# =======================
-# ENDPOINT: ANDROID
-# =======================
 @app.route('/receive_usage', methods=['POST'])
 def receive_usage():
     global LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY, SMARTPHONE_DATA_RECEIVED, LAST_IOT_TIMESTAMP
@@ -57,10 +33,21 @@ def receive_usage():
     if not data:
         return jsonify({"status": "error", "message": "no json received"}), 400
 
+    # Ambil ID unik handphone
+    device_id = data.get("device_id", "unknown_device")
+
     if not SMARTPHONE_DATA_RECEIVED:
         SMARTPHONE_DATA_RECEIVED = True
-        print("\n[INFO] Data Smartphone Pertama Diterima. Data IoT Sekarang Diizinkan Tampil dan Disimpan.")
+        print(f"\n[INFO] Koneksi pertama diterima dari perangkat: {device_id}")
 
+    # --- KONFIGURASI FILE DINAMIS PER HP ---
+    OVERALL_CSV = os.path.join(DATA_FOLDER, f"dataset_{device_id}.csv")
+    DETAIL_CSV = os.path.join(DATA_FOLDER, f"detail_{device_id}.csv")
+    
+    overall_exists = os.path.isfile(OVERALL_CSV)
+    detail_exists = os.path.isfile(DETAIL_CSV)
+
+    # --- PROSES DATA ---
     total_sec_all = data.get("total_screen_time_s", 0)
     usage_list = data.get("usage_data", [])
 
@@ -69,6 +56,7 @@ def receive_usage():
     formatted_total = format_hms(total_sec_all)
     total_hours = total_sec_all / 3600
 
+    # Hitung Fuzzy Logic
     result = fuzzy_logic.calculate_stress(
         total_hours,
         LAST_TEMPERATURE,
@@ -79,56 +67,39 @@ def receive_usage():
     level = result["category"]
     message = result["message"]
 
-    print(f"\n[{now}] === Android Usage Data ===")
-    print(f"Total Screen Time: {formatted_total} → Level: {level}")
-    print(f"Suhu dipakai: {LAST_TEMPERATURE}°C, Humid: {LAST_HUMIDITY}%, AQ: {LAST_AIRQUALITY} ppm")
-    print(f"FUZZY MESSAGE: {message}")
-
-    with open(CSV_OVERALL, "a", newline="", encoding="utf-8") as f:
+    # --- SIMPAN DATA OVERALL PER HP ---
+    with open(OVERALL_CSV, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
+        if not overall_exists:
+            writer.writerow(["timestamp", "source", "temperature", "humidity", "air_quality", "total_usage_time", "fuzzy_level", "message"])
+        
+        writer.writerow([now, "android_summary", LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY, formatted_total, level, message])
 
-        writer.writerow([
-            now, "android_summary",
-            LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY,
-            formatted_total, level, message
-        ])
-
-        # PROXIMITY CHECK IOT
-        time_difference = now_dt - LAST_IOT_TIMESTAMP
-
-        if timedelta(seconds=0) <= time_difference <= TIME_PROXIMITY_THRESHOLD:
-            iot_message = f"IoT data (T:{LAST_TEMPERATURE}) saved due to proximity rule."
-
-            print(f"[INFO] PROXIMITY LOGGED: Data IoT ({LAST_IOT_TIMESTAMP.strftime('%H:%M:%S')}) disimpan ke CSV.")
-
-        else:
-            print(f"[INFO] PROXIMITY CHECK: Data IoT terakhir ({LAST_IOT_TIMESTAMP.strftime('%H:%M:%S')}) terlalu jauh. Tidak disimpan.")
-
+    # --- SIMPAN DATA DETAIL PER HP ---
     if usage_list:
-        with open(CSV_DETAIL_USAGE, "a", newline="", encoding="utf-8") as f:
+        with open(DETAIL_CSV, "a", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
+            if not detail_exists:
+                writer.writerow(["timestamp_received", "package_name", "app_name", "foreground_time_s"])
+            
             for usage_item in usage_list:
-                pkg_name = usage_item.get("package", "N/A")
-                app_name = usage_item.get("app_name", "N/A")
-                time_s = usage_item.get("foreground_time_s", 0)
-                
                 writer.writerow([
-                    now,           
-                    pkg_name,      
-                    app_name,      
-                    time_s         
+                    now,
+                    usage_item.get("package", "N/A"),
+                    usage_item.get("app_name", "N/A"),
+                    usage_item.get("foreground_time_s", 0)
                 ])
+
+    print(f"\n[{now}] === Data Android ({device_id}) ===")
+    print(f"Stress Level: {level}")
 
     return jsonify({
         "status": "ok",
         "source": "android",
         "message": message,
+        "level": level
     }), 200
 
-
-# =======================
-# ENDPOINT: IoT
-# =======================
 @app.route('/receive_sensor', methods=['POST'])
 def receive_sensor():
     global LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY, LAST_IOT_TIMESTAMP
@@ -137,31 +108,15 @@ def receive_sensor():
     if not data:
         return jsonify({"status": "error", "message": "no json received"}), 400
 
-    suhu = data.get("temperature")
-    kelembapan = data.get("humidity")
-    kualitas_udara = data.get("air_quality")
-
-    LAST_TEMPERATURE = suhu
-    LAST_HUMIDITY = kelembapan
-    LAST_AIRQUALITY = kualitas_udara
+    LAST_TEMPERATURE = data.get("temperature", LAST_TEMPERATURE)
+    LAST_HUMIDITY = data.get("humidity", LAST_HUMIDITY)
+    LAST_AIRQUALITY = data.get("air_quality", LAST_AIRQUALITY)
     LAST_IOT_TIMESTAMP = datetime.now()
 
-    now = datetime.now().isoformat()
+    print(f"\n[{LAST_IOT_TIMESTAMP.isoformat()}] === Data IoT ===")
+    print(f"Suhu: {LAST_TEMPERATURE} °C | Humid: {LAST_HUMIDITY}% | AQ: {LAST_AIRQUALITY} ppm")
 
-    print(f"\n[{now}] === IoT Sensor Data ===")
-    print(f"Suhu: {suhu} °C | Humid: {kelembapan}% | AQ: {kualitas_udara} ppm")
-
-    return jsonify({
-        "status": "ok",
-        "source": "iot",
-        "message": "Sensor data received.",
-        "temperature": suhu,
-        "humidity": kelembapan,
-        "air_quality": kualitas_udara
-    }), 200
-
-
-# RUN SERVER
+    return jsonify({"status": "ok", "message": "Sensor data updated"}), 200
 
 if __name__ == "__main__":
     print("Server Flask aktif di http://0.0.0.0:5000 ...")

@@ -41,7 +41,9 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
 
             Log.d(TAG, "Worker SUCCEEDED: Data sent to server.")
             Result.success()
+
         } catch (e: Exception) {
+
             Log.e(TAG, "Worker FAILED (Network/Logic Error): ${e.message}", e)
             e.printStackTrace()
             Result.retry()
@@ -205,6 +207,12 @@ class UsageDataWorker(appContext: Context, workerParams: WorkerParameters) :
     @Throws(IOException::class)
     private fun sendDataToServer(jsonArray: JSONArray, totalScreenTimeSeconds: Long) {
         val finalPayload = JSONObject()
+        val deviceId = android.provider.Settings.Secure.getString(
+            applicationContext.contentResolver,
+            android.provider.Settings.Secure.ANDROID_ID
+        )
+
+        finalPayload.put("device_id", deviceId)
         finalPayload.put("total_screen_time_s", totalScreenTimeSeconds)
         finalPayload.put("usage_data", jsonArray)
 
