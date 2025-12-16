@@ -36,13 +36,16 @@ def receive_usage():
     # Ambil ID unik handphone
     device_id = data.get("device_id", "unknown_device")
 
+    DEVICE_FOLDER = os.path.join(DATA_FOLDER, f"device_{device_id}")
+    os.makedirs(DEVICE_FOLDER, exist_ok=True)
+
     if not SMARTPHONE_DATA_RECEIVED:
         SMARTPHONE_DATA_RECEIVED = True
-        print(f"\n[INFO] Koneksi pertama diterima dari perangkat: {device_id}")
+        print(f"\n[INFO] Koneksi diterima dari perangkat: {device_id}")
 
     # --- KONFIGURASI FILE DINAMIS PER HP ---
-    OVERALL_CSV = os.path.join(DATA_FOLDER, f"dataset_{device_id}.csv")
-    DETAIL_CSV = os.path.join(DATA_FOLDER, f"detail_{device_id}.csv")
+    OVERALL_CSV = os.path.join(DEVICE_FOLDER, f"dataset_{device_id}.csv")
+    DETAIL_CSV = os.path.join(DEVICE_FOLDER, f"detail_{device_id}.csv")
     
     overall_exists = os.path.isfile(OVERALL_CSV)
     detail_exists = os.path.isfile(DETAIL_CSV)
@@ -67,7 +70,7 @@ def receive_usage():
     level = result["category"]
     message = result["message"]
 
-    # --- SIMPAN DATA OVERALL PER HP ---
+    # --- SIMPAN DATA OVERALL KE FOLDER PERANGKAT ---
     with open(OVERALL_CSV, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         if not overall_exists:
@@ -75,7 +78,7 @@ def receive_usage():
         
         writer.writerow([now, "android_summary", LAST_TEMPERATURE, LAST_HUMIDITY, LAST_AIRQUALITY, formatted_total, level, message])
 
-    # --- SIMPAN DATA DETAIL PER HP ---
+    # --- SIMPAN DATA DETAIL KE FOLDER PERANGKAT ---
     if usage_list:
         with open(DETAIL_CSV, "a", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
@@ -91,11 +94,15 @@ def receive_usage():
                 ])
 
     print(f"\n[{now}] === Data Android ({device_id}) ===")
-    print(f"Stress Level: {level}")
+    print(f"Total Screen Time: {formatted_total} → Level: {level}")
+    print(f"Suhu dipakai: {LAST_TEMPERATURE}°C, Humid: {LAST_HUMIDITY}%, AQ: {LAST_AIRQUALITY} ppm")
+    print(f"FUZZY MESSAGE: {message}")
 
     return jsonify({
         "status": "ok",
         "source": "android",
+        "device": device_id,
+        "folder": DEVICE_FOLDER,
         "message": message,
         "level": level
     }), 200

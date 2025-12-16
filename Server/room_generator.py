@@ -4,7 +4,7 @@ import random
 import math
 from datetime import datetime
 
-SERVER_URL = "http://10.194.114.9:5000/receive_sensor" 
+SERVER_URL = "http://192.168.1.50:5000/receive_sensor" 
 SIMULATION_INTERVAL = 180  
 
 class RealisticSensor:

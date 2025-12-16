@@ -1,0 +1,3 @@
+timestamp,source,temperature,humidity,air_quality,total_usage_time,fuzzy_level,message
+2025-12-16T19:37:09.184063,android_summary,22.54,65.7,0.47,7 jam 51 menit 9 detik,Tinggi,"Tingkat stres kamu tinggi, Matikan Smartphone dan Pergi Refreshing!"
+2025-12-16T19:52:09.513325,android_summary,25,30,20,8 jam 6 menit 9 detik,Tinggi,"Tingkat stres kamu tinggi, Matikan Smartphone dan Pergi Refreshing!"
