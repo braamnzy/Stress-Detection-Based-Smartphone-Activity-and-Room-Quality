@@ -71,15 +71,15 @@ def receive_usage():
     message = result["message"]
 
     # PROXIMITY CHECK IOT
-        time_difference = now_dt - LAST_IOT_TIMESTAMP
+    time_difference = now_dt - LAST_IOT_TIMESTAMP
 
-        if timedelta(seconds=0) <= time_difference <= TIME_PROXIMITY_THRESHOLD:
-            iot_message = f"IoT data (T:{LAST_TEMPERATURE}) saved due to proximity rule."
+    if timedelta(seconds=0) <= time_difference <= TIME_PROXIMITY_THRESHOLD:
+        iot_message = f"IoT data (T:{LAST_TEMPERATURE}) saved due to proximity rule."
 
-            print(f"[INFO] PROXIMITY LOGGED: Data IoT ({LAST_IOT_TIMESTAMP.strftime('%H:%M:%S')}) disimpan ke CSV.")
+        print(f"[INFO] PROXIMITY LOGGED: Data IoT ({LAST_IOT_TIMESTAMP.strftime('%H:%M:%S')}) disimpan ke CSV.")
 
-        else:
-            print(f"[INFO] PROXIMITY CHECK: Data IoT terakhir ({LAST_IOT_TIMESTAMP.strftime('%H:%M:%S')}) terlalu jauh. Tidak disimpan.")
+    else:
+        print(f"[INFO] PROXIMITY CHECK: Data IoT terakhir ({LAST_IOT_TIMESTAMP.strftime('%H:%M:%S')}) terlalu jauh. Tidak disimpan.")
 
     # --- SIMPAN DATA OVERALL KE FOLDER PERANGKAT ---
     with open(OVERALL_CSV, "a", newline="", encoding="utf-8") as f:

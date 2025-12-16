@@ -203,7 +203,7 @@ def calculate_stress(screentime, temperature, humidity, air_quality):
         message = "Tingkat stres kamu sedang, Jaga aktivitasmu tetap produktif!"
     else:
         category = "Tinggi"
-        message = "Tingkat stres kamu tinggi, Matikan Smartphone dan Pergi Refreshing!"
+        message = "Tingkat stres kamu tinggi, Matikan Smartphone dan Pergi Mancing!"
 
     return {
         "stress_value": float(value),
